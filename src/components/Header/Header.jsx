@@ -6,7 +6,7 @@ function Header() {
   return (
     <div className="Hbody">
       <div className="nav-title">
-        <h1 id="Header-title">Airlines Nepal</h1>
+        <h1 id="Header-title">Airlines </h1>
       </div>
 
       <div className="nav-lists">
@@ -51,9 +51,11 @@ function Header() {
         >
           Contact
         </NavLink>
-        <NavLink to="/login" className=" login-tag">
+       <div className=" login-tag">
+        <NavLink to="/login" >
           Login/Register
-        </NavLink>
+          </NavLink>
+          </div>
       </div>
     </div>
   );
