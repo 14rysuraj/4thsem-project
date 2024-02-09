@@ -1,0 +1,95 @@
+.body {
+  height: 100vh;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 0%,
+    rgba(97, 106, 170, 1) 0%,
+    rgba(185, 202, 219, 1) 0%,
+    rgba(0, 207, 255, 1) 75%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile {
+  background-image: url(/pngwing.com.pnp);
+  width: 120px;
+  height: 120px;
+  margin-left: 37%;
+  margin-top: 10%;
+  background-image: url(/src/assets/pngwing.com.png);
+  background-position: center;
+  background-size: cover;
+}
+
+.login {
+  height: 300px;
+  width: 300px;
+  padding: 1rem;
+  margin-top: 2.5rem;
+  margin-left: 5%;
+}
+input {
+  display: flex;
+  width: 100%;
+  border-radius: 3px;
+  height: 27px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+label {
+  font-weight: 500;
+}
+#forget-password {
+  text-align: end;
+}
+#forget-password:hover {
+  color: rgb(97, 165, 165);
+}
+
+.login-btn {
+  border: 1px solid white;
+  padding: 5px;
+  width: 100%;
+  height: 35px;
+  border-radius: 4px;
+}
+
+.login-btn:hover {
+  background: green;
+  background-image: linear-gradient(
+    270deg,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0) 50%,
+    #0c4a86 0,
+    #0c4a86
+  );
+  background-position: 100% 0;
+  background-size: 200% 100%;
+  -webkit-transition: all 0.4s ease-in;
+  -o-transition: all 0.4s ease-in;
+  transition: all 0.4s ease-in;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  font-family: open_sanslight, sans-serif;
+
+  color: #fff;
+  cursor: pointer;
+}
+
+#or {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+#CA {
+  text-align: center;
+}
+
+.Lcontainer {
+  display: flex;
+  flex-direction: column;
+  padding-right: 5%;
+}

@@ -1,0 +1,140 @@
+.Booking {
+  margin-top: 1rem;
+
+  display: flex;
+  justify-content: center;
+}
+
+.aero-image {
+  background-image: url(/src/assets/aero2.jpeg);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 100px;
+  width: 200px;
+}
+
+#B-message {
+  font-size: x-large;
+  font-weight: bolder;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+.wholeBook {
+  padding: 2rem;
+  width: 70%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 5px;
+  box-shadow: 2px 4px 4px 4px rgb(198, 191, 191);
+}
+
+.size {
+  display: flex;
+  justify-content: center;
+}
+
+#from,#to{
+  width: 100%;
+  border: 1px solid black;
+  height: 40px;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 1rem;
+  background-color: rgb(212, 210, 207);
+}
+
+.bookForm {
+  margin-top: 3rem;
+}
+.bookForm input {
+  height: 40px;
+ 
+  
+}
+.bookForm input {
+  padding: 1rem;
+  background-color: rgb(212, 210, 207);
+}
+
+.date {
+  width: 40%;
+}
+
+.dateAndClass {
+  display: flex;
+  justify-content: space-between;
+}
+
+.class {
+  border: 1px solid rgb(255, 255, 255);
+  background-color: rgb(208, 203, 194);
+  border-radius: 5px;
+  padding: 4px;
+  width: 40%;
+}
+
+
+
+.Book-now {
+  border: 2px solid black;
+  padding: 0.4rem;
+  width: 100%;
+  margin-top: 2rem;
+  border-radius: 5px;
+  transition: transform 0.2s ease-in-out;
+  
+}
+
+.Book-now:hover {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 0%,
+    rgba(97, 106, 170, 1) 0%,
+    rgba(185, 202, 219, 1) 0%,
+    rgba(0, 207, 255, 1) 75%
+  );
+  transform: scale(1.02);
+  
+}
+
+.btn-cont {
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
+
+@media only screen and (max-width: 700px) {
+  .wholeBook {
+    width: 82%;
+  }
+}
+.B-card-sec,
+.B-card-sec2 {
+  display: flex;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  overflow-x: scroll;
+}
+
+@media screen and (max-width: 500px) {
+  .B-card-sec,
+  .B-card-sec2 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 90%;
+    margin: auto;
+  }
+}
+.BookBody {
+  color: wheat;
+  color: black;
+}
+
+

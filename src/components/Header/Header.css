@@ -1,0 +1,51 @@
+.Hbody {
+  height: 100px;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 0%,
+    rgba(97, 106, 170, 1) 0%,
+    rgba(185, 202, 219, 1) 0%,
+    rgba(0, 207, 255, 1) 75%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-bottom: 9px solid rgb(222, 222, 220);
+  box-shadow: 3px 3px 4px 4px whitesmoke;
+ 
+  width: 100%;
+}
+
+#Header-title {
+  font-family: cursive;
+  font-weight: bolder;
+  font-size: xx-large;
+  margin-left: 5rem;
+}
+
+.nav-lists {
+  display: flex;
+  gap: 3rem;
+  list-style: none;
+  margin-right: 1rem;
+  font-size: large;
+  align-items: center;
+}
+
+.login-tag {
+  margin-left: 10rem;
+  font-size: x-large;
+  border: 2px solid whitesmoke;
+  display: flex;
+  align-items: center;
+  padding: 2px 20px;
+  border-radius: 1rem;
+}
+
+@media only screen and (max-width: 900px) {
+  .Hbody {
+    display: none;
+  }
+}
