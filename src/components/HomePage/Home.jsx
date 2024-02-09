@@ -6,6 +6,8 @@ function Home() {
     <>
       <div className="homeBody">
         <main>
+
+          
           <img
             src="../src/assets/homepage.jpeg"
             className=""
