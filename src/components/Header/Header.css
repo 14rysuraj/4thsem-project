@@ -42,12 +42,18 @@
   border: 1px solid white;
   padding: 0.5em 1em;
   padding-left: 9rem;
-  width: 11%;
+  width: 2%;
   display: flex;
   justify-content: flex-end;
   margin-left: 13%;
   background-color:#00B2FF;
   color: white;
+  display: flex;
+ 
+}
+
+.logout{
+  padding-right: 4rem;
 }
 
 .login-tag:hover{

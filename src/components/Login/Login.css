@@ -86,6 +86,14 @@ label {
 
 #CA {
   text-align: center;
+ 
+  font-weight: 600;
+ 
+}
+
+
+#CA:hover{
+ color: #0c4a86;
 }
 
 .Lcontainer {
