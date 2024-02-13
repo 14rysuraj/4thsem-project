@@ -1,15 +1,14 @@
 import React, { useContext, useState } from "react";
 import "./Register.css";
-import { NavLink, Navigate} from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
 
 function Register() {
-
   const navigate = useNavigate();
-  
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,6 +16,11 @@ function Register() {
   const handlesignup = async (e) => {
     try {
       e.preventDefault();
+      if (password.length < 8) {
+        toast.error("Password must be  at least 8 characters long!");
+      } else if (password.length > 16) {
+        toast.error("Password cannot exceed 16 characters!");
+      }
 
       const response = await axios.post(
         "/api/v1/users/new",
@@ -35,23 +39,14 @@ function Register() {
 
       if (response.data.success) {
         toast.success(response.data.message);
-        navigate('/login')
-      }
-      else {
+        navigate("/login");
+      } else {
         toast.error(response.data.message);
       }
-
-
-     
-     
-    
     } catch (error) {
       console.log(error);
     }
   };
-  
-
- 
 
   return (
     <>
@@ -66,6 +61,7 @@ function Register() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="register-input"
+            required
           />
           <label htmlFor="email" className="register-input">
             Email Address :
@@ -75,6 +71,7 @@ function Register() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="register-input"
+            required
           />
           <label htmlFor="password" className="register-input">
             Password :
@@ -83,6 +80,7 @@ function Register() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <button className="signup-button">Sign up</button>
           <br />

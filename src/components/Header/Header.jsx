@@ -103,6 +103,7 @@ function Header() {
         >
           myprofile
         </NavLink>
+        </div>
 
         {isAuthenticated ? (
        
@@ -116,7 +117,7 @@ function Header() {
             <NavLink to="/login">Login/Register</NavLink>
           </div>
         )}
-      </div>
+     
     </div>
   );
 }

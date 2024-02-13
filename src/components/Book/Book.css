@@ -21,12 +21,43 @@
   margin-top: 1.5rem;
 }
 .wholeBook {
-  padding: 2rem;
-  width: 70%;
+  padding: 1rem;
+  width: 50%;
   margin-top: 2rem;
   margin-bottom: 2rem;
   border-radius: 5px;
   box-shadow: 2px 4px 4px 4px rgb(198, 191, 191);
+}
+
+.toAndFrom {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: auto;
+  align-items: center;
+}
+#from,
+#to {
+  height: 40px;
+  border: 2px solid black;
+  width: 340px;
+  margin: 0.1rem 2% 1rem;
+  border-radius: 5px;
+
+}
+
+.switchicon{
+  height: 30px;
+  width: 30px;
+background-image: url(../src/assets/App.png);
+  margin-bottom: 20px;
+background-position: center;
+background-size: cover;
+
+}
+
+.switchicon:hover{
+  cursor: pointer;
 }
 
 .size {
@@ -34,56 +65,67 @@
   justify-content: center;
 }
 
-#from,#to{
-  width: 100%;
-  border: 1px solid black;
-  height: 40px;
-  border-radius: 5px;
-  text-align: center;
-  margin-bottom: 1rem;
-  background-color: rgb(212, 210, 207);
-}
-
 .bookForm {
   margin-top: 3rem;
 }
 .bookForm input {
   height: 40px;
- 
-  
 }
 .bookForm input {
   padding: 1rem;
   background-color: rgb(212, 210, 207);
 }
 
-.date {
-  width: 40%;
+.date,.class {
+  height: 40px;
+  border: 2px solid black;
+  width: 350px;
+  margin: 0.1rem 2% 1rem;
+  border-radius: 5px;
 }
 
 .dateAndClass {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: auto;
 }
 
-.class {
-  border: 1px solid rgb(255, 255, 255);
-  background-color: rgb(208, 203, 194);
-  border-radius: 5px;
-  padding: 4px;
-  width: 40%;
+.oneWayTwoWay{
+  display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 10px;
 }
 
 
+
+
+.btn-cont {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  align-items: baseline;
+  flex-wrap: wrap;
+  
+
+
+}
 
 .Book-now {
   border: 2px solid black;
-  padding: 0.4rem;
-  width: 100%;
+padding:0.3rem  5rem;
+  width: auto;
   margin-top: 2rem;
   border-radius: 5px;
   transition: transform 0.2s ease-in-out;
-  
+ 
+}
+
+#moneyCalc{
+  display: flex;
+  align-items: center;
+  margin: 20px 0 0;
 }
 
 .Book-now:hover {
@@ -97,15 +139,7 @@
     rgba(0, 207, 255, 1) 75%
   );
   transform: scale(1.02);
-  
 }
-
-.btn-cont {
-  display: flex;
-  justify-content: center;
-}
-
-
 
 
 
@@ -136,5 +170,3 @@
   color: wheat;
   color: black;
 }
-
-

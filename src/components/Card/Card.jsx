@@ -1,8 +1,31 @@
 import React from "react";
 import "./Card.css";
-function Card({image, money, p}) {
+function Card({ image, money, p }) {
+  
+
+
+
+
+
+  const handleCardBook = async() => {
+  
+
+
+
+}
+
+
   return (
     <>
+      
+
+
+
+
+
+      
+<form onSubmit={handleCardBook}></form>
+
       <div className="B-card">
         <div className="B-card-img">
           <img src={image} alt="" />
