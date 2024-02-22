@@ -9,11 +9,11 @@ import pic5 from "../../assets/jalbire.jpeg";
 import pic6 from "../../assets/pokharaandsang.jpeg";
 import pic7 from "../../assets/paragliding.jpeg";
 import pic8 from "../../assets/templerun.jpeg";
-
 import Payment from "../Payment/Payment";
 import toast from "react-hot-toast";
-import { Navigate, redirect } from "react-router-dom";
+import { useNavigate,Navigate, redirect } from "react-router-dom";
 import { context } from "../../main";
+import axios from "axios";
 
 function Book() {
   const [fromCity, setFromCity] = useState("");
@@ -21,30 +21,64 @@ function Book() {
   const [date, setDate] = useState("");
   const [passenger, setPassenger] = useState("");
   const [tripType, setTripType] = useState("");
-  const [amount, setAmount] = useState("");
-  const { isAutheticated, setIsAuthenticated } = useContext(context);
+  const [amount, setAmount] = useState("1000");
+  const [returnDate, setReturnDate] = useState("");
+  const { isAuthenticated, setIsAuthenticated,round,setRound } = useContext(context);
 
-  const handleBook = (e) => {
-    e.preventDefault();
+  const navigate = useNavigate();
 
-    if (!fromCity || !toCity) return toast.error("select the city");
-    if (fromCity === toCity) return toast.error("choose different city");
+  useEffect(() => {
+    setAmount(passenger * 1000);
+    if (tripType == "twoWay") {
+      setAmount(passenger * 1000 * 2);
+    }
+  });
 
-    if (!passenger) return toast.error("select the passenger");
-    if (!tripType) return toast.error("select the trip type");
+  const handleBook = async (e) => {
+    try {
+      e.preventDefault();
+      if (!fromCity || !toCity) return toast.error("select the city");
+      if (fromCity === toCity) return toast.error("choose different city");
+      if (new Date(date) < Date.now() || new Date(returnDate) < Date.now())
+        return toast.error("date not valid");
+      if (!passenger) return toast.error("select the passenger");
+      if (!tripType) return toast.error("select the trip type");
+      
 
-    if (!isAutheticated) toast.error("login first for booking");
-    return <Navigate to={"/login"} />;
+      const response = await axios.post(
+        "/api/v1/ticket/new",
+        {
+          fromCity,
+          toCity,
+          date,
+          passenger,
+          tripType,
+          amount,
+          returnDate,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
 
-    console.log(fromCity + toCity + date + passenger + tripType);
+      if (response.data.success) {
+        toast.success(response.data.message);
+        
+        navigate("/" ,{ replace: true});
+        
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
 
-    toast.success("Thank you for booking");
-    setFromCity("");
-    setToCity("");
-    setDate("");
-    setPassenger("");
-    setTripType("");
-    setAmount("");
+    {
+      !isAuthenticated ? toast.error("Login  first") : "";
+    }
   };
 
   const handleReverse = () => {
@@ -54,10 +88,7 @@ function Book() {
     setToCity(tempFrom);
   };
 
-  useEffect(() => {
-    console.log("from city:", fromCity);
-    console.log("top city:", toCity);
-  }, [fromCity, toCity]);
+ 
 
   return (
     <>
@@ -108,6 +139,7 @@ function Book() {
                   className="date"
                   required
                 />
+
                 <select
                   name="passenger"
                   id="passengers"
@@ -117,9 +149,29 @@ function Book() {
                   onChange={(e) => setPassenger(e.target.value)}
                 >
                   <option value="">Passenger</option>
-                  <option value="2 Adult">2 Adult</option>
+                  <option value="2">2 Adult</option>
+                  <option value="3">3 Adult</option>
                 </select>
               </div>
+              {tripType == "twoWay" ? (
+                <p className="returnDate">Return Date :</p>
+              ) : (
+                ""
+              )}
+
+              {tripType == "twoWay" ? (
+                <div className="returnDateAndInput">
+                  <input
+                    type="date"
+                    value={returnDate}
+                    onChange={(e) => setReturnDate(e.target.value)}
+                    className="date"
+                    required
+                  />
+                </div>
+              ) : (
+                ""
+              )}
 
               <div className="oneWayTwoWay">
                 {/* Radio buttons for selecting trip type */}
@@ -144,7 +196,7 @@ function Book() {
               </div>
 
               <div className="btn-cont">
-                <h1 id="moneyCalc">Amount :</h1>
+                <h1 id="moneyCalc">Amount :{amount}</h1>
                 <button className="Book-now">Book Now</button>
               </div>
             </form>

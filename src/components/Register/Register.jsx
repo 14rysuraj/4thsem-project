@@ -10,6 +10,8 @@ function Register() {
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -17,15 +19,20 @@ function Register() {
     try {
       e.preventDefault();
       if (password.length < 8) {
-        toast.error("Password must be  at least 8 characters long!");
+        return toast.error("Password must be  at least 8 characters long!");
       } else if (password.length > 16) {
-        toast.error("Password cannot exceed 16 characters!");
+        return toast.error("Password cannot exceed 16 characters!");
+      }
+      if (phoneNumber.length !== 10) { 
+        return toast.error("Please enter a valid phone number!");
       }
 
       const response = await axios.post(
         "/api/v1/users/new",
         {
           name,
+          phoneNumber,
+          address,
           email,
           password,
         },
@@ -55,7 +62,7 @@ function Register() {
           <h2 className="register-title">Registration</h2>
           <br />
           <br />
-          <label htmlFor="username">Username :</label>
+          <label htmlFor="username">Name :</label>
           <input
             type="text"
             value={name}
@@ -63,6 +70,25 @@ function Register() {
             className="register-input"
             required
           />
+
+          <label htmlFor="phoneNumber">Phone Number:</label>
+          <input
+            type="number"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            className="register-input"
+            required
+          />
+
+          <label htmlFor="address">Address:</label>
+          <input
+            type="text"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            className="register-input"
+            required
+          />
+
           <label htmlFor="email" className="register-input">
             Email Address :
           </label>

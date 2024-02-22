@@ -1,7 +1,7 @@
 .B-card {
   border: 1px solid rgb(171, 154, 154);
-  width: 100%;
-  min-width: 300px;
+  width: 94%;
+  width: 350px;
   text-align: center;
   box-shadow: -2px 5px 5px 3px hsl(0, 4%, 67%);
   padding: 1rem;
@@ -46,7 +46,6 @@
   width: 90%;
   height: 40px;
   border-radius: 6px;
-  
 }
 
 .forGap {

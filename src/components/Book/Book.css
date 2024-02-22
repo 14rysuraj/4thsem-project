@@ -1,3 +1,8 @@
+.BookBody{
+  padding-top: 6.4rem;
+
+}
+
 .Booking {
   margin-top: 1rem;
 
@@ -43,20 +48,18 @@
   width: 340px;
   margin: 0.1rem 2% 1rem;
   border-radius: 5px;
-
 }
 
-.switchicon{
+.switchicon {
   height: 30px;
   width: 30px;
-background-image: url(../src/assets/App.png);
+  background-image: url(../src/assets/App.png);
   margin-bottom: 20px;
-background-position: center;
-background-size: cover;
-
+  background-position: center;
+  background-size: cover;
 }
 
-.switchicon:hover{
+.switchicon:hover {
   cursor: pointer;
 }
 
@@ -73,10 +76,10 @@ background-size: cover;
 }
 .bookForm input {
   padding: 1rem;
-  background-color: rgb(212, 210, 207);
 }
 
-.date,.class {
+.date,
+.class {
   height: 40px;
   border: 2px solid black;
   width: 350px;
@@ -91,15 +94,12 @@ background-size: cover;
   width: auto;
 }
 
-.oneWayTwoWay{
+.oneWayTwoWay {
   display: flex;
-    justify-content: space-around;
-    align-items: center;
-    font-size: 10px;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 10px;
 }
-
-
-
 
 .btn-cont {
   display: flex;
@@ -107,22 +107,18 @@ background-size: cover;
   width: 100%;
   align-items: baseline;
   flex-wrap: wrap;
-  
-
-
 }
 
 .Book-now {
   border: 2px solid black;
-padding:0.3rem  5rem;
+  padding: 0.3rem 5rem;
   width: auto;
   margin-top: 2rem;
   border-radius: 5px;
   transition: transform 0.2s ease-in-out;
- 
 }
 
-#moneyCalc{
+#moneyCalc {
   display: flex;
   align-items: center;
   margin: 20px 0 0;
@@ -141,8 +137,6 @@ padding:0.3rem  5rem;
   transform: scale(1.02);
 }
 
-
-
 @media only screen and (max-width: 700px) {
   .wholeBook {
     width: 82%;
@@ -151,9 +145,9 @@ padding:0.3rem  5rem;
 .B-card-sec,
 .B-card-sec2 {
   display: flex;
-  margin-left: 3rem;
-  margin-right: 3rem;
-  overflow-x: scroll;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  overflow-x:scroll;
 }
 
 @media screen and (max-width: 500px) {
@@ -169,4 +163,18 @@ padding:0.3rem  5rem;
 .BookBody {
   color: wheat;
   color: black;
+}
+
+.returnDate {
+  text-align: center;
+
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.returnDateAndInput {
+  display: flex;
+  justify-content: center;
 }

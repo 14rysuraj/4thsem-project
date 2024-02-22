@@ -1,0 +1,30 @@
+.contact-card{
+    height: 250px;
+    width: auto;
+    border-radius: 10px;
+    margin: 3rem;
+    border: 1px solid rgb(231, 230, 230);
+    box-shadow: 2px 2px rgb(240, 239, 236);
+    padding: 0px 50px;
+}
+
+.contact-card > h1{
+    font-weight: bolder;
+    font-size: xx-large;
+    color: rgb(11, 11, 15);
+    text-align: center;
+    border-radius: 10px 10px 0px 0px;
+
+}
+
+.contact-card > h2{
+    font-weight: bolder;
+    font-size: x-large;
+   
+    padding: 20px;
+
+}
+.contact-card >p{
+    padding-left: 20px;
+    padding-top: 5px;
+}

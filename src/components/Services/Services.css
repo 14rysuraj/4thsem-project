@@ -1,0 +1,41 @@
+.serviceCard {
+  width: 400px;
+  border-radius: 40px;
+}
+
+.imgdiv {
+  height: 300px;
+  width: 100%;
+  background-color: aqua;
+  border-radius: 30px;
+  background-position: center;
+  background-size: cover;
+  
+}
+.imgdiv>img{
+  height: 300px;
+  width: 100%;
+  border-radius: 30px;
+}
+
+.serviceCard > h3 {
+  font-size: initial;
+  font-weight: initial;
+  font-size: 2rem;
+  text-align: center;
+  padding-top: 30px;
+}
+.moreInfoBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.moreInfoBtn > button {
+  background-color: rgb(36, 32, 32);
+  color: white;
+  padding: 10px 30px;
+  border-radius: 10px;
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+}

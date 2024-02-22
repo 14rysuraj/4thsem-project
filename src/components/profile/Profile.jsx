@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { context } from "../../main";
-import "./Profile.css"
+import { NavLink } from "react-router-dom";
+import "./Profile.css";
 
 function Profile() {
   const [data, setData] = useState({});
@@ -17,34 +18,28 @@ function Profile() {
     fetchData();
   }, []);
 
- 
-
-
-
   return (
-
-
-    
     <div className="profileBody">
+      {isAuthenticated ? (
+        <div className="profileContainer">
+          <div className="userProfile"></div>
 
-      {isAuthenticated ? (<div className="profileContainer">
-      <h2 className="profileHeading">User Profile</h2>
-      
-      <p>Name: {data.user ? data.user.name : 'Loading...'} </p>
-        <p>Email: {data.user ? data.user.email : 'Loading...'} </p>
-        
-      </div>) :
-        
+          <p>Name: {data.user ? data.user.name : "Loading..."} </p>
+          <p>Phone number : {data.user ? data.user.phoneNumber : ""}</p>
+          <p>Address : {data.user ? data.user.address : ""}</p>
+          <p>Email: {data.user ? data.user.email : "Loading..."} </p>
+
+          <div className="profileBtn">
+            <NavLink className="editbtn" to={"/edit"}>
+              Edit Profile
+            </NavLink>
+          </div>
+        </div>
+      ) : (
         <div className="notProfile">
-
-
-        <h1 className="loginPleaseMessage">Login Please</h1>
-      
-      
-      
-      </div>}
-    
-      
+          <h1 className="loginPleaseMessage">Login Please</h1>
+        </div>
+      )}
     </div>
   );
 }

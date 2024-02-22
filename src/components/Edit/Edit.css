@@ -1,0 +1,25 @@
+.editContainer{
+     width: 30%;
+     height: 100vh;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+}
+
+.editBody{
+    display: flex;
+    justify-content: center;
+  
+}
+
+
+.editContainer> button{
+color: white;
+background-color: #5cb85c;
+padding: 4px;
+    
+}
+.editContainer > input{
+border: 1px solid black;
+}
+

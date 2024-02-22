@@ -1,8 +1,11 @@
 .profileContainer {
-  background-color: #4267b2;
-  height: 200px;
   padding: 3rem;
-  border-radius: 2rem;
+  width: 40%;
+  border: 2px solid rgb(197, 182, 182);
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .profileBody {
   display: flex;
@@ -25,7 +28,29 @@
 }
 
 .loginPleaseMessage {
-    font-weight: bolder;
-    font-size: xx-large;
-  
+  font-weight: bolder;
+  font-size: xx-large;
+}
+
+.userProfile {
+  background-color: rgb(136, 156, 150);
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background-image: url(../src/assets/pngwing.com.png);
+  background-position: center;
+  background-size: cover;
+  margin-bottom: 4rem;
+}
+.profileBtn {
+  display: flex;
+  justify-content: center;
+}
+
+.editbtn {
+  color: blue;
+  margin-top: 2rem;
+}
+.profileContainer > p {
+  padding: 1rem;
 }

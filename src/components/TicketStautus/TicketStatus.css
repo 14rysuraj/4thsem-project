@@ -1,25 +1,55 @@
-.image-container {
-    position: relative;
-    display: inline-block;
-  }
-  
-  
-  .image-container img {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-  
+.Tbody {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px;
+  width: 100%;
+  height: 100vh;
+}
 
-  .overlay-text {
-    position: absolute;
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%);
-  font-weight:bolder;
-  background-color: rgb(246, 238, 238);
-    padding: 10px 20px; 
-    font-size: 20px;
-    color: #4267B2;
-  }
-  
+.ticket {
+  padding: 2rem;
+  border: 2px solid black;
+  width: auto;
+  margin: 2rem;
+  height: fit-content;
+}
+.ticket > h2 {
+  text-align: center;
+  padding: 20px;
+}
+.fromCitytext {
+}
+
+.fromAndTotext {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.amounttext {
+  text-align: center;
+}
+.tripTypetext,
+.passengertext {
+  margin-top: 1rem;
+}
+
+.cancelBtn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cancelBtn > button {
+  background-color: #232323;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+}
+
+.loginToSee {
+  height: 54vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(82, 82, 191);
+  font-size: xx-large;
+}

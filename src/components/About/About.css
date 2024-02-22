@@ -1,0 +1,23 @@
+.aboutBody {
+  height: 50vh;
+
+  display: flex;
+  align-items: center;
+ 
+
+}
+.contentAbout {
+  width: 60%;
+  margin-left: 5rem;
+}
+
+.contentAbout > h1 {
+  font-weight: initial;
+  font-size: initial;
+  font-size: 3.2rem;
+  margin-bottom: 2rem;
+ 
+}
+
+.contentAbout > p {
+}

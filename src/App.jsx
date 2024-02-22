@@ -14,6 +14,7 @@ import Register from "./components/Register/Register";
 import Payment from "./components/Payment/Payment";
 import { Toaster } from "react-hot-toast";
 import Profile from "./components/profile/Profile";
+import Edit from "./components/Edit/Edit";
 
 function App() {
   return (
@@ -26,13 +27,15 @@ function App() {
           <Route path="/" Component={Home} />
           <Route path="/about" Component={About} />
           <Route path="/book" Component={Book} />
-          <Route path="/ticketstatus" Component={TicketStatus} />
+          <Route path="/mytickets" Component={TicketStatus} />
             <Route path="/contact" Component={Contact} />
-            <Route path="/myprofile" Component={Profile}/>
-          </Route>
-          <Route path="/login" Component={Login} />
+            <Route path="/myprofile" Component={Profile} />
+            <Route path="/login" Component={Login} />
           <Route path="/register" Component={Register} />
-          <Route path="/payment" Component={Payment}/>
+            <Route path="/payment" Component={Payment} />
+            <Route path="/edit" Component={Edit}/>
+          </Route>
+         
           
         </Routes>
         <Toaster/>

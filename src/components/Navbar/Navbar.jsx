@@ -37,7 +37,7 @@ function Navbar() {
             <NavLink to='/' className='menu-item'
             >Home</NavLink>
             <NavLink to='/book' className='menu-item'>Book</NavLink>
-            <NavLink to='/ticketstatus' className='menu-item'>Ticket Status</NavLink>
+            <NavLink to='/mytickets' className='menu-item'>My Ticket</NavLink>
                 <NavLink to='/about' className='menu-item'>About</NavLink>
                
 

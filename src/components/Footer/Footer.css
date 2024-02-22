@@ -1,8 +1,65 @@
-.footerBody{
-    height: 100px;
-    background-color: white;
-    border-top: 4px solid yellow;
-    margin-top: 1rem;
+.footerBody {
+  height: 250px;
+  background-color: white;
+  border-top: 4px solid rgb(225, 225, 217);
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 50px;
+  align-items: center;
 
-    
+}
+.fdiv0>h2{
+    font-weight: bolder;
+font-size:larger;
+margin-bottom: 1rem;
+}
+
+.fdiv1 >h2{
+font-weight: bolder;
+font-size:larger;
+margin-bottom: 1rem;
+}
+
+.fdiv0 >p,.fdiv1 >p{
+    padding-top: 10px;
+}
+
+
+.fdiv2{
+  
+    align-items: center;
+ 
+   
+
+  
+}
+.fdivimgsec{
+height: 40px;
+width: 100%;
+
+display:flex;
+background-position: center;
+justify-content: space-between;
+
+}
+
+.fdiv2 > h1{
+    text-align: center;
+    margin-top: 2REM;
+}
+
+.lastOne{
+    border-top: 3px solid green;
+    display: flex;
+    justify-content: space-between;
+   padding: 20px;
+}
+.div1>h3{
+    font-weight: 900;
+    font-size: large;
+    padding-left: 30px;
+}
+.div2 >p{
+font-size: large;
+padding-right: 30px;
 }

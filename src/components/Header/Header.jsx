@@ -54,7 +54,7 @@ function Header() {
           Book
         </NavLink>
         <NavLink
-          to="/ticketstatus"
+          to="/mytickets"
           className={({ isActive }) =>
             `${
               isActive
@@ -63,7 +63,7 @@ function Header() {
             }`
           }
         >
-          Ticket Status
+          My Ticket
         </NavLink>
         <NavLink
           to="/about"

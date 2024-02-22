@@ -7,8 +7,10 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { context } from "../../main";
 import { Navigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 function Login() {
+  const [cookies, setCookies] = useCookies("token");
   const { isAuthenticated, setIsAuthenticated } = useContext(context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,21 +35,18 @@ function Login() {
 
       if (response.data.success) {
         toast.success(response.data.message);
+        setCookies("token", response.data.token);
         setIsAuthenticated(true);
-        
-      }
-
-        else {
+      } else {
         toast.error(response.data.message);
         setIsAuthenticated(false);
       }
-     
     } catch (error) {
       console.log(error);
     }
   };
 
-  if (isAuthenticated) return <Navigate to ={"/"} />;
+  if (isAuthenticated) return <Navigate to={"/"} />;
 
   return (
     <div className="body">
