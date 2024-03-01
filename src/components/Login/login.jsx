@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import "./Login.css";
+import "./login.scss";
 import Register from "../Register/Register";
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
@@ -8,17 +8,29 @@ import toast from "react-hot-toast";
 import { context } from "../../main";
 import { Navigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { BiHide, BiShow } from "react-icons/bi";
 
 function Login() {
   const [cookies, setCookies] = useCookies("token");
   const { isAuthenticated, setIsAuthenticated } = useContext(context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleShowPassword = (e) => {
+    e.preventDefault();
+
+    setShowPassword((prev) => !prev);
+  };
 
   const handleLogin = async (e) => {
     try {
       e.preventDefault();
-      console.log(email + password);
+     if (!email) return toast.error("Please enter your email address!");
+      if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email))
+        return toast.error("Invalid Email Address!");
+      if (!password) return toast.error("Please enter your password!");
+
       const response = await axios.post(
         "/api/v1/users/login",
         {
@@ -49,53 +61,51 @@ function Login() {
   if (isAuthenticated) return <Navigate to={"/"} />;
 
   return (
-    <div className="body">
-      <div className="Lcontainer">
-        <div className="profile"></div>
+    <>
+      <div className="loginBody">
+        <div className="container">
+          <div className="img">
+            <h2>Welcome Back</h2>
+            <br />
+            <p>Sign in to your account.</p>
+          </div>
+          <div className="loginForm">
+            <form action="">
+              <h2>Log in</h2>
+              <label htmlFor="email"> </label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                id="email"
+                placeholder="Email"
+              />
 
-        <form onSubmit={handleLogin} className="login">
-          <label htmlFor="email">Email:</label>
-          <input
-            type="text"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <br />
-
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <br />
-
-          <p id="forget-password">
-            <a
-              href="#"
-              onClick={() => {
-                alert("Pagal hai kya yaad kara kar bhai password ");
-              }}
-            >
-              forget Password?
-            </a>
-          </p>
-          <br />
-          <button className="login-btn">Log In</button>
-          <br />
-          <p id="or">OR</p>
-          <br />
-
-          <p id="CA">
-            <NavLink to="/register">Create New Account </NavLink>
-          </p>
-        </form>
+              <label htmlFor="password"> </label>
+              <div className="password">
+                <input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <button onClick={handleShowPassword}>
+                  {showPassword ? <BiShow /> : <BiHide />}
+                </button>
+              </div>
+              <p>Forget Password ?</p>
+              <button onClick={handleLogin}>Log In</button>
+              <p>
+                Don't have an account ?{" "}
+                <NavLink to="/register">Sign up</NavLink>{" "}
+              </p>
+            </form>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -1,153 +1,13 @@
-.BookBody{
-  padding-top: 6.4rem;
 
-}
 
-.Booking {
-  margin-top: 1rem;
-
+.B-card-sec {
   display: flex;
-  justify-content: center;
-}
-
-.aero-image {
-  background-image: url(/src/assets/aero2.jpeg);
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 100px;
-  width: 200px;
-}
-
-#B-message {
-  font-size: x-large;
-  font-weight: bolder;
-  text-align: center;
-  margin-top: 1.5rem;
-}
-.wholeBook {
-  padding: 1rem;
-  width: 50%;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  border-radius: 5px;
-  box-shadow: 2px 4px 4px 4px rgb(198, 191, 191);
-}
-
-.toAndFrom {
-  display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  width: auto;
-  align-items: center;
-}
-#from,
-#to {
-  height: 40px;
-  border: 2px solid black;
-  width: 340px;
-  margin: 0.1rem 2% 1rem;
-  border-radius: 5px;
-}
-
-.switchicon {
-  height: 30px;
-  width: 30px;
-  background-image: url(../src/assets/App.png);
-  margin-bottom: 20px;
-  background-position: center;
-  background-size: cover;
-}
-
-.switchicon:hover {
-  cursor: pointer;
-}
-
-.size {
-  display: flex;
-  justify-content: center;
-}
-
-.bookForm {
-  margin-top: 3rem;
-}
-.bookForm input {
-  height: 40px;
-}
-.bookForm input {
-  padding: 1rem;
-}
-
-.date,
-.class {
-  height: 40px;
-  border: 2px solid black;
-  width: 350px;
-  margin: 0.1rem 2% 1rem;
-  border-radius: 5px;
-}
-
-.dateAndClass {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: auto;
-}
-
-.oneWayTwoWay {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  font-size: 10px;
-}
-
-.btn-cont {
-  display: flex;
   justify-content: space-evenly;
-  width: 100%;
-  align-items: baseline;
-  flex-wrap: wrap;
-}
-
-.Book-now {
-  border: 2px solid black;
-  padding: 0.3rem 5rem;
-  width: auto;
-  margin-top: 2rem;
-  border-radius: 5px;
-  transition: transform 0.2s ease-in-out;
-}
-
-#moneyCalc {
-  display: flex;
-  align-items: center;
-  margin: 20px 0 0;
-}
-
-.Book-now:hover {
-  background: rgb(2, 0, 36);
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 9, 121, 1) 0%,
-    rgba(97, 106, 170, 1) 0%,
-    rgba(185, 202, 219, 1) 0%,
-    rgba(0, 207, 255, 1) 75%
-  );
-  transform: scale(1.02);
-}
-
-@media only screen and (max-width: 700px) {
-  .wholeBook {
-    width: 82%;
-  }
-}
-.B-card-sec,
-.B-card-sec2 {
-  display: flex;
   margin-left: 1rem;
   margin-right: 1rem;
-  overflow-x:scroll;
+  overflow-x: scroll;
+  margin-bottom: 4rem;
 }
 
 @media screen and (max-width: 500px) {
@@ -159,22 +19,4 @@
     width: 90%;
     margin: auto;
   }
-}
-.BookBody {
-  color: wheat;
-  color: black;
-}
-
-.returnDate {
-  text-align: center;
-
-  height: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.returnDateAndInput {
-  display: flex;
-  justify-content: center;
 }

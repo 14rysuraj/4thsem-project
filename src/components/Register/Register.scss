@@ -1,0 +1,117 @@
+.registerBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+
+  > .container {
+    height: 50vh;
+
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+
+    > .img {
+      height: 100%;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+
+      > h1 {
+        font-size: 4rem;
+        font-weight: 600;
+        color: #4267b2;
+      }
+      > p {
+        font-size: 1.6rem;
+        padding: 2rem 0;
+      }
+
+      @media only screen and (max-width: 1200px) {
+        display: none;
+      }
+    }
+    > .loginForm {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      > form {
+        display: flex;
+        flex-direction: column;
+
+        align-items: flex-start;
+        justify-content: center;
+        padding: 3rem;
+        width: 60%;
+        @media only screen and (max-width: 650px) {
+          width: 100%;
+        }
+
+        > h2 {
+          font-size: 1.5rem;
+          font-weight: 700;
+          padding: 1rem 0;
+          font-family: sans-serif;
+        }
+
+        > input {
+          width: 100%;
+          padding: 0.5rem 0;
+          margin: 0.5rem 0;
+          border: none;
+          border-bottom: 2px solid black;
+          font-size: small;
+        }
+
+        > .password {
+          display: flex;
+          width: 100%;
+          justify-content: flex-end;
+          align-items: center;
+          > input {
+            width: 100%;
+            padding: 0.5rem 0;
+            margin: 0.5rem 0;
+            border: none;
+            border-bottom: 2px solid black;
+            font-size: small;
+          }
+          > button {
+            position: absolute;
+          }
+        }
+
+        > p {
+          font-size: 0.8rem;
+          padding: 1rem 0;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        > button {
+          width: 100%;
+          padding: 0.5rem 0;
+          margin: 0.5rem 0;
+          background-color: #4267b2;
+          border-radius: 5px;
+          color: white;
+          transition: all 0.5s ease-in-out;
+          &:hover {
+            font-size: 1.1rem;
+          }
+        }
+        > p {
+          > a {
+            text-decoration: underline;
+            color: blue;
+          }
+        }
+      }
+    }
+  }
+}

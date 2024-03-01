@@ -1,65 +1,72 @@
 .footerBody {
-  height: 250px;
   background-color: white;
   border-top: 4px solid rgb(225, 225, 217);
   display: flex;
   justify-content: space-between;
+
   padding: 20px 50px;
   align-items: center;
-
+  flex-wrap: wrap;
 }
-.fdiv0>h2{
-    font-weight: bolder;
-font-size:larger;
-margin-bottom: 1rem;
-}
-
-.fdiv1 >h2{
-font-weight: bolder;
-font-size:larger;
-margin-bottom: 1rem;
+.fdiv0 > h2 {
+  font-weight: bolder;
+  font-size: larger;
+  margin-bottom: 1rem;
 }
 
-.fdiv0 >p,.fdiv1 >p{
-    padding-top: 10px;
+.fdiv1 > h2 {
+  font-weight: bolder;
+  font-size: larger;
+  margin-bottom: 1rem;
 }
 
-
-.fdiv2{
-  
-    align-items: center;
- 
-   
-
-  
-}
-.fdivimgsec{
-height: 40px;
-width: 100%;
-
-display:flex;
-background-position: center;
-justify-content: space-between;
-
+.fdiv0 > p,
+.fdiv1 > p {
+  padding-top: 10px;
 }
 
-.fdiv2 > h1{
-    text-align: center;
-    margin-top: 2REM;
+.fdiv2 {
+  align-items: center;
+}
+.fdivimgsec {
+  height: 40px;
+  width: 100%;
+
+  display: flex;
+  background-position: center;
+  justify-content: space-between;
 }
 
-.lastOne{
-    border-top: 3px solid green;
-    display: flex;
-    justify-content: space-between;
-   padding: 20px;
+.fdiv2 > h1 {
+  text-align: center;
+  margin-top: 2rem;
 }
-.div1>h3{
-    font-weight: 900;
-    font-size: large;
-    padding-left: 30px;
+
+.lastOne {
+  border-top: 3px solid green;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  flex-wrap: wrap;
 }
-.div2 >p{
-font-size: large;
-padding-right: 30px;
+.div1 > h3 {
+  font-weight: 900;
+  font-size: large;
+  padding-left: 4px;
+}
+.div2 > p {
+  font-size: large;
+  padding-right: 30px;
+}
+
+.fdiv0,
+.div1,
+.div2 {
+  padding: 2rem;
+}
+.fdiv1 {
+  padding: 2rem;
+}
+.fdiv2 {
+  padding: 2rem;
 }

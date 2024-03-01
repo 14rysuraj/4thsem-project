@@ -6,24 +6,27 @@ import { useNavigate } from "react-router-dom";
 function Edit() {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  
+
   const [address, setAddress] = useState("");
   const navigate = useNavigate();
 
   const fetchUserData = async () => {
     const profileResponse = await axios.get("/api/v1/users/me");
-    setName(profileResponse.data.user.name)
+    setName(profileResponse.data.user.name);
     setAddress(profileResponse.data.user.address);
     setPhoneNumber(profileResponse.data.user.phoneNumber);
-  }
+  };
 
   const handleEdit = async (e) => {
     e.preventDefault();
 
-    if (phoneNumber.length !== 10) {
-      return toast.error("Invalid Phone Number");
-    }
-    
+   // Regular expression to match a 10-digit phone number
+   const phoneRegex = /^\d{10}$/;
+
+   // Check if the phone number matches the regex pattern
+   if (!phoneRegex.test(phoneNumber)) {
+     return toast.error("Please enter a valid 10-digit phone number");
+   }
 
     const response = await axios.post(
       "/api/v1/users/edit",
@@ -42,9 +45,7 @@ function Edit() {
 
     if (response.data.success) {
       toast.success(response.data.message);
-      setAddress("");
-      setName("");
-      setPhoneNumber("");
+    navigate("/myProfile")
     } else {
       toast.error("Error in Updating Profile");
     }
@@ -52,7 +53,7 @@ function Edit() {
 
   useEffect(() => {
     fetchUserData();
-  }, [])
+  }, []);
 
   return (
     <div className="editBody">
@@ -60,7 +61,6 @@ function Edit() {
         Name :
         <input
           type="text"
-          name="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />

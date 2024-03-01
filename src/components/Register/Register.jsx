@@ -1,9 +1,8 @@
 import React, { useContext, useState } from "react";
-import "./Register.css";
+import "./Register.scss";
 import { NavLink, Navigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import axios from "axios";
-
 import { useNavigate } from "react-router-dom";
 
 function Register() {
@@ -18,14 +17,19 @@ function Register() {
   const handlesignup = async (e) => {
     try {
       e.preventDefault();
-      if (password.length < 8) {
-        return toast.error("Password must be  at least 8 characters long!");
-      } else if (password.length > 16) {
-        return toast.error("Password cannot exceed 16 characters!");
-      }
-      if (phoneNumber.length !== 10) { 
+
+      if (!name) return toast.error("Please enter your name!");
+      if (!phoneNumber)
+        return toast.error("Please provide a valid phone number!");
+      if (phoneNumber.length !== 10) {
         return toast.error("Please enter a valid phone number!");
       }
+
+      if (!email) return toast.error("Please enter your email address!");
+      if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email))
+        return toast.error("Invalid Email Address!");
+      else if (!password || password.length < 8)
+        return toast.error("Password must be at least 8 characters long.");
 
       const response = await axios.post(
         "/api/v1/users/new",
@@ -57,68 +61,74 @@ function Register() {
 
   return (
     <>
-      <div className="register-container">
-        <form onSubmit={handlesignup}>
-          <h2 className="register-title">Registration</h2>
-          <br />
-          <br />
-          <label htmlFor="username">Name :</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="register-input"
-            required
-          />
+      <div className="registerBody">
+        <div className="container">
+          <div className="img">
+            <h1>New To Here</h1>
 
-          <label htmlFor="phoneNumber">Phone Number:</label>
-          <input
-            type="number"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            className="register-input"
-            required
-          />
+            <p>Register to stay connected us.</p>
+          </div>
+          <div className="loginForm">
+            <form action="">
+              <h2>Sign Up</h2>
 
-          <label htmlFor="address">Address:</label>
-          <input
-            type="text"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            className="register-input"
-            required
-          />
+              <input
+                type="text"
+                required
+                id="name"
+                placeholder="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
 
-          <label htmlFor="email" className="register-input">
-            Email Address :
-          </label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="register-input"
-            required
-          />
-          <label htmlFor="password" className="register-input">
-            Password :
-          </label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <button className="signup-button">Sign up</button>
-          <br />
-          <br />
-          <p>
-            Already Registered ?
-            <NavLink to="/login" className="reg-click-here">
-              {" "}
-              Login
-            </NavLink>
-          </p>
-        </form>
+              <input
+                type="number"
+                required
+                id="number"
+                placeholder="Phone Number"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+              />
+
+              <label htmlFor="address"> </label>
+              <input
+                type="text"
+                required
+                id="address"
+                placeholder="Address"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              />
+
+              <label htmlFor="email"> </label>
+              <input
+                type="email"
+                required
+                id="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+
+              <label htmlFor="password"> </label>
+              <div className="password">
+                <input
+                  id="password"
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <br />
+              <br />
+              <button onClick={handlesignup}>Sign Up</button>
+              <p>
+                Already Registered ? <NavLink to="/login">Log In </NavLink>
+              </p>
+            </form>
+          </div>
+        </div>
       </div>
     </>
   );

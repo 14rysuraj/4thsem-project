@@ -1,220 +1,272 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { lazy, useContext, useEffect, useState } from "react";
 import "./Book.css";
 import Card from "../Card/Card";
-import pic1 from "../../assets/lumbini.jpeg";
-import pic2 from "../../assets/specialfamilytour.jpeg";
-import pic3 from "../../assets/adventurouspokharatour.jpeg";
-import pic4 from "../../assets/muktinath.jpeg";
-import pic5 from "../../assets/jalbire.jpeg";
-import pic6 from "../../assets/pokharaandsang.jpeg";
-import pic7 from "../../assets/paragliding.jpeg";
-import pic8 from "../../assets/templerun.jpeg";
-import Payment from "../Payment/Payment";
-import toast from "react-hot-toast";
-import { useNavigate,Navigate, redirect } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+import { useNavigate, Navigate, redirect } from "react-router-dom";
 import { context } from "../../main";
-import axios from "axios";
+import "./Book.scss";
+import { packages } from "../utils/packeges";
+import { FaPlaneDeparture } from "react-icons/fa";
+import { TbArrowsExchange } from "react-icons/tb";
+import { FaLongArrowAltRight } from "react-icons/fa";
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { IoMdClose } from "react-icons/io";
+import Search from "../Search/Search";
 
 function Book() {
-  const [fromCity, setFromCity] = useState("");
-  const [toCity, setToCity] = useState("");
+  let today = new Date().toISOString().split("T")[0];
+  let today1 = new Date();
+  let maxDate = new Date(today1.getTime() + 2 * 24 * 60 * 60 * 1000);
+  let maxDateString = maxDate.toISOString().split("T")[0];
+  console.log(maxDateString);
+
+  const { isAuthenticated, setIsAuthenticated } = useContext(context);
+  const [tripType, setTripType] = useState("OneWay");
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
   const [date, setDate] = useState("");
-  const [passenger, setPassenger] = useState("");
-  const [tripType, setTripType] = useState("");
-  const [amount, setAmount] = useState("1000");
   const [returnDate, setReturnDate] = useState("");
-  const { isAuthenticated, setIsAuthenticated,round,setRound } = useContext(context);
+  const [showPassenger, setShowPassenger] = useState(false);
+  const [adult, setadult] = useState(1);
+  const [child, setchild] = useState(0);
+  const [nationality, setNationality] = useState("");
+
+  const handleSearchFlights = (e) => {
+    e.preventDefault();
+
+    if (!from || !to) return toast.error("Please select a location");
+    if (!date) return toast.error("Please select a date");
+    if (!nationality) return toast.error("Please enter your nationality");
+
+   if(!returnDate && tripType==="RoundTrip") return toast.error("Please enter a return date");
+
+    navigate("/search", {
+      state: {
+        tripType,
+        nationality,
+        adult,
+        child,
+        totalPassenger,
+        from,
+        to,
+        date,
+        returnDate,
+      },
+    });
+  };
+
+  const handleShowPassenger = (e) => {
+    e.preventDefault();
+    setShowPassenger((prev) => !prev);
+  };
+
+  let totalPassenger = 0;
+  totalPassenger += adult + child;
+
+  const subtractAdult = (e) => {
+    e.preventDefault();
+    setadult((prev) => parseInt(prev) - 1);
+  };
+  const addAdult = (e) => {
+    e.preventDefault();
+    setadult((prev) => parseInt(prev) + 1);
+  };
+
+  const subtractChild = (e) => {
+    e.preventDefault();
+    setchild((prev) => parseInt(prev) - 1);
+  };
+
+  const addChild = (e) => {
+    e.preventDefault();
+    setchild((prev) => parseInt(prev) + 1);
+  };
+
+  const handleSwapValue = (e) => {
+    e.preventDefault();
+    let tempFrom = from;
+    let tempTo = to;
+    setFrom(tempTo);
+    setTo(tempFrom);
+  };
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setAmount(passenger * 1000);
-    if (tripType == "twoWay") {
-      setAmount(passenger * 1000 * 2);
-    }
-  });
-
-  const handleBook = async (e) => {
-    try {
-      e.preventDefault();
-      if (!fromCity || !toCity) return toast.error("select the city");
-      if (fromCity === toCity) return toast.error("choose different city");
-      if (new Date(date) < Date.now() || new Date(returnDate) < Date.now())
-        return toast.error("date not valid");
-      if (!passenger) return toast.error("select the passenger");
-      if (!tripType) return toast.error("select the trip type");
-      
-
-      const response = await axios.post(
-        "/api/v1/ticket/new",
-        {
-          fromCity,
-          toCity,
-          date,
-          passenger,
-          tripType,
-          amount,
-          returnDate,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      );
-
-      if (response.data.success) {
-        toast.success(response.data.message);
-        
-        navigate("/" ,{ replace: true});
-        
-      } else {
-        toast.error(response.data.message);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-
-    {
-      !isAuthenticated ? toast.error("Login  first") : "";
-    }
-  };
-
-  const handleReverse = () => {
-    let tempFrom = fromCity;
-    let tempTo = toCity;
-    setFromCity(tempTo);
-    setToCity(tempFrom);
-  };
-
- 
 
   return (
     <>
       <div className="BookBody">
-        <div className="size">
-          <div className="wholeBook">
-            <h1 id="B-message">Where Do You Like To Go ?</h1>
-            <div className="Booking">
-              <div className="aero-image"></div>
+        <div className="imgContainer">
+          <div className="bookingContainer">
+            <div className="flight">
+              {" "}
+              <FaPlaneDeparture />
+              Flight
             </div>
-            <form onSubmit={handleBook} className="bookForm">
-              <div className="toAndFrom">
+            <form action="">
+              <div className="options">
                 <select
-                  name="city"
-                  value={fromCity}
-                  onChange={(e) => setFromCity(e.target.value)}
-                  id="from"
+                  value={tripType}
+                  onChange={(e) => setTripType(e.target.value)}
                 >
-                  <option value="">From</option>
-                  <option value="Kathmandu">Kathmandu</option>
-                  <option value="Pokhara">Pokhara</option>
-                  <option value="Muktinath">Muktinath</option>
+                  <option value="OneWay">One Way</option>
+                  <option value="RoundTrip">Round Trip</option>
                 </select>
-
-                <div
-                  onClick={() => handleReverse()}
-                  className="switchicon"
-                ></div>
-
                 <select
-                  name="city"
-                  value={toCity}
-                  onChange={(e) => setToCity(e.target.value)}
-                  id="to"
+                  value={nationality}
+                  onChange={(e) => setNationality(e.target.value)}
                 >
-                  <option value="">To</option>
-                  <option value="Muktinath">Muktinath</option>
-                  <option value="Kathmandu">Kathmandu</option>
-                  <option value="Pokhara">Pokhara</option>
+                  <option value="">Nationality</option>
+                  <option value="Nepali">Nepali</option>
+                  <option value="Indian">Indian</option>
                 </select>
-              </div>
-              <br />
-              <div className="dateAndClass">
-                <input
-                  type="date"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
-                  className="date"
-                  required
-                />
+                <div className="passenger">
+                  <label htmlFor="passenger"> {totalPassenger} passenger</label>
 
-                <select
-                  name="passenger"
-                  id="passengers"
-                  className="class"
-                  placeho
-                  value={passenger}
-                  onChange={(e) => setPassenger(e.target.value)}
-                >
-                  <option value="">Passenger</option>
-                  <option value="2">2 Adult</option>
-                  <option value="3">3 Adult</option>
-                </select>
-              </div>
-              {tripType == "twoWay" ? (
-                <p className="returnDate">Return Date :</p>
-              ) : (
-                ""
-              )}
+                  <button onClick={handleShowPassenger} id="passenger">
+                    <MdOutlineKeyboardArrowDown />
+                  </button>
+                  {showPassenger ? (
+                    <div className="dropdown">
+                      <h3>
+                        Passenger (max 8){" "}
+                        <button onClick={handleShowPassenger}>
+                          <IoMdClose />
+                        </button>{" "}
+                      </h3>
+                      <div className="adult">
+                        <p>Adult </p>
 
-              {tripType == "twoWay" ? (
-                <div className="returnDateAndInput">
-                  <input
-                    type="date"
-                    value={returnDate}
-                    onChange={(e) => setReturnDate(e.target.value)}
-                    className="date"
-                    required
-                  />
+                        <button onClick={subtractAdult} disabled={adult <= 1}>
+                          -
+                        </button>
+                        <span>{adult}</span>
+                        <button
+                          onClick={addAdult}
+                          disabled={totalPassenger > 7}
+                        >
+                          +
+                        </button>
+                      </div>
+                      <div className="child">
+                        <p>Child</p>
+                        <button onClick={subtractChild} disabled={child <= 0}>
+                          -
+                        </button>
+                        <span>{child}</span>
+                        <button
+                          onClick={addChild}
+                          disabled={totalPassenger > 7}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
-              ) : (
-                ""
-              )}
-
-              <div className="oneWayTwoWay">
-                {/* Radio buttons for selecting trip type */}
-                <label>
-                  <input
-                    type="radio"
-                    value="oneWay"
-                    checked={tripType === "oneWay"}
-                    onChange={() => setTripType("oneWay")}
-                  />
-                  One Way
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    value="twoWay"
-                    checked={tripType === "twoWay"}
-                    onChange={() => setTripType("twoWay")}
-                  />
-                  Two Way
-                </label>
               </div>
-
-              <div className="btn-cont">
-                <h1 id="moneyCalc">Amount :{amount}</h1>
-                <button className="Book-now">Book Now</button>
+              <div className="otherOptions">
+                <div className="source">
+                  <h2>From</h2>
+                  <select
+                    value={from}
+                    onChange={(e) => setFrom(e.target.value)}
+                  >
+                    <option value="">Select Boarding Location</option>
+                    <option value="pokhara">Pokhara</option>
+                    <option value="kathmandu">Kathmandu</option>
+                  </select>
+                </div>
+                <button onClick={handleSwapValue}>
+                  <TbArrowsExchange />
+                </button>
+                <div className="destination">
+                  <h2>To</h2>
+                  <select value={to} onChange={(e) => setTo(e.target.value)}>
+                    <option value="">Select Destination</option>
+                    <option value="pokhara">Pokhara</option>
+                    <option value="kathmandu">Kathmandu</option>
+                  </select>
+                </div>
+                <div className="dates">
+                  <div className="departure">
+                    <h2>Departure</h2>
+                    <input
+                      type="date"
+                      value={date}
+                      min={today}
+                      max={maxDateString}
+                      onChange={(e) => setDate(e.target.value)}
+                    />
+                  </div>
+                  <div className="return">
+                    {" "}
+                    <h2>Return</h2>
+                    {tripType === "OneWay" ? (
+                      <input
+                        type="date"
+                        value={returnDate}
+                        min={today}
+                        disabled
+                        onChange={(e) => setReturnDate(e.target.value)}
+                      />
+                    ) : (
+                      <input
+                        type="date"
+                        value={returnDate}
+                        min={today}
+                        max={maxDateString}
+                        onChange={(e) => setReturnDate(e.target.value)}
+                      />
+                    )}
+                  </div>
+                </div>
               </div>
             </form>
           </div>
+          <button onClick={handleSearchFlights}>
+            Search Flights <FaLongArrowAltRight />
+          </button>
         </div>
 
+        <div className="hero">
+          <div className="one">
+            <p>Choose Your</p>
+            <h1>DESTINATIONS</h1>
+            <h2>
+              Our Airlines provides domestic flight from Kathmandu to various
+              populat destinations.
+            </h2>
+          </div>
+          <div className="two">
+            <div className="imgoneandtwo">
+              {" "}
+              <img src="src/assets/oneimg.jpeg" alt="" />
+            </div>
+            <div className="imgoneandtwo" id="imgtwo">
+              <img src="src/assets/twoimg.jpeg" alt="" />
+            </div>
+
+            <div className="imgthirdandforth" id="thirdimg">
+              <img src="src/assets/threeimg.jpeg" alt="" />
+            </div>
+            <div className="imgthirdandforth" id="forthimg">
+              <img src="src/assets/fourthimg.jpeg" alt="" />
+            </div>
+          </div>
+        </div>
+
+        <h2 className="h2">Check Out Our Special Packages</h2>
         <div className="B-card-sec">
-          <Card image={pic1} money="1288" p="TWO DAYS IN PEACEFUL LUMBINI" />
-          <Card p="Special Family Tour" image={pic2} money="3000" />
-          <Card image={pic3} p="Adventorous Pokhara Tour" />
-          <Card image={pic4} p="MUKTINATH DARSHAN" />
-        </div>
-
-        <div className="B-card-sec2">
-          <Card image={pic5} p="JALBIRE CANYONING" />
-          <Card image={pic6} p="POKHARA AND SARANGKOT" />
-          <Card image={pic7} p="PARAGLIDING IN POKHARA" />
-          <Card image={pic8} p="TEMPLE RUN [BHTRTO]" />
+          {packages.map((item, id) => (
+            <Card
+              key={item.id}
+              image={item.image}
+              price={item.price}
+              title={item.title}
+            />
+          ))}
         </div>
       </div>
     </>

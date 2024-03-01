@@ -29,18 +29,7 @@ function Header() {
       </div>
 
       <div className="nav-lists">
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            `${
-              isActive
-                ? " px-2 text-white bg-blue-600 rounded dark:bg-blue-500"
-                : "text-black-700"
-            }`
-          }
-        >
-          Home
-        </NavLink>
+  
         <NavLink
           to="/book"
           className={({ isActive }) =>
