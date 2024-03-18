@@ -1,129 +1,150 @@
-.searchBody{
+.searchBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  overflow-y: scroll;
+
+  > .header {
+    height: 100px;
+
+    width: 100%;
+    margin-bottom: 7rem;
+    margin-top: 10rem;
     display: flex;
-    flex-direction: column;
+    box-shadow: 5px 5px 5px 5px rgba(212, 202, 202, 0.5);
     align-items: center;
-    height: 100vh;
+    justify-content: space-evenly;
+    > svg {
+      font-size: xx-large;
+    }
 
+    > .one {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      > p {
+        font-size: larger;
+        font-weight: 700;
+        color: green;
+      }
+    }
+  }
 
-    >.header{
-        height: 100px;
-      
+  > .searchContainer {
+    width: 85%;
+
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 0;
+
+    > .one {
+      width: 70%;
+      border-radius: 1rem;
+      box-shadow: 5px 5px 5px 5px rgba(212, 202, 202, 0.5);
+      display: flex;
+      align-items: center;
+
+      > .seat {
+        height: 100%;
+        width: 20%;
+        border-right: 2px solid black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        > svg {
+          font-size: xx-large;
+        }
+      }
+      > .middle {
+        height: 100%;
         width: 100%;
-        margin-bottom: 7rem;
-        margin-top: 3rem;
+        border-right: 2px solid black;
         display: flex;
-        box-shadow: 5px 5px 5px 5px rgba(212, 202, 202,0.5);
-align-items: center;
-        justify-content: space-evenly;
-        >svg{
-            font-size: xx-large;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 2rem;
+
+        > svg {
+          width: 100%;
+          font-size: xx-large;
         }
 
-        >.one{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            >p{
-                font-size: larger;
-                font-weight: 700;
-                color: green;
-            }
+        > h3 {
+          width: 25%;
+          font-weight: 700;
+          font-size: larger;
         }
-    }
-
-    >.searchContainer{
-        width: 85%;
-      
-        height: 120px;
+      }
+      > .last {
+        height: 100%;
+        width: 20%;
         display: flex;
-        justify-content: space-between;
-        margin: 2rem 0;
-
-        >.one{
-            width: 70%;
-            border-radius: 1rem;
-            box-shadow: 5px 5px 5px 5px rgba(212, 202, 202,0.5);
-            display: flex;
-            align-items: center;
-
-
-
-                >.seat{
-                 
-                    height: 100%;
-                    width: 20%;
-                    border-right: 2px solid black;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    >svg{
-                        font-size: xx-large;
-                    }
-                }
-                >.middle{
-                   
-                    height: 100%;
-                    width: 100%;
-                    border-right: 2px solid black;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 1rem 2rem;
-
-                    
-                    >svg{
-                        width: 100%;
-                        font-size: xx-large;
-                    }
-                    
-                    >h3{
-                        width: 25%;
-                        font-weight: 700;
-                        font-size: larger;
-                    }
-                }
-                >.last{
-                 
-                    height: 100%;
-                    width: 20%;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                }
-
-
-
-
-
-
-
-
-
-
-        }
-        >.two{
-            width: 20%;
-            border-radius: 1rem;
-            box-shadow: 5px 5px 5px 5px rgba(212, 202, 202,0.5);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            >h3{
-                font-size: larger;
-
-            }
-            >button{
-                background-color: green;
-                padding: 0.5rem 2rem;
-                border-radius: 0.2rem;
-                margin-top: 1rem;
-            }
-
-
-        }
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
     }
+    > .two {
+      width: 20%;
+      border-radius: 1rem;
+      box-shadow: 5px 5px 5px 5px rgba(212, 202, 202, 0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      > h3 {
+        font-size: larger;
+      }
+      > button {
+        background-color: green;
+        padding: 0.5rem 2rem;
+        border-radius: 0.2rem;
+        margin-top: 1rem;
+      }
+    }
+  }
+}
+
+.bookNow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > .container {
+    width: 100%;
+    background-color: whitesmoke;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    margin: 150px 0;
+    > button {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      > svg {
+        padding: 5px;
+        font-size: xx-large;
+      }
+    }
+    > h1 {
+      background-color: green;
+      padding: 10px;
+      font-size: large;
+      font-weight: 400;
+    }
+    > .btn {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      > button {
+        background-color: green;
+        width: 100px;
+        padding: 10px;
+      }
+    }
+  }
 }

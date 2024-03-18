@@ -1,0 +1,33 @@
+.userDetail {
+
+
+  > header {
+    background-color: black;
+    color: white;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 100px;
+    border-top-left-radius: 15px;
+    > div {
+      width: 20%;
+      padding-left: 10px;
+    }
+  }
+
+  > .info {
+    display: flex;
+    height: 40px;
+    justify-content: space-between;
+    align-items: center;
+
+    > h3 {
+      width: 20%;
+      padding-left: 10px;
+      > button {
+        color: blue;
+      }
+    }
+  }
+}

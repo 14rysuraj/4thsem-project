@@ -1,0 +1,26 @@
+.addTicketForm {
+  height: 100%;
+  > form {
+    display: flex;
+
+    align-items: center;
+
+    > input {
+      background-color: antiquewhite;
+      height: 40px;
+      margin-right: 10px;
+      border: 2px solid black;
+      padding: 0 10px;
+      border-radius: 5px;
+      color: black;
+
+    }
+    > button {
+      background-color: black;
+      color: white;
+      border: 5px solid black;
+      border-radius: 5px;
+      padding: 3px 20px;
+    }
+  }
+}

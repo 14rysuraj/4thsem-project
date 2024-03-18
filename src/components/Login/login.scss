@@ -27,6 +27,12 @@
         font-weight: 600;
         color: #4267b2;
       }
+      > p {
+        > a {
+          color: black;
+          text-decoration: underline;
+        }
+      }
     }
     > .loginForm {
       width: 100%;
@@ -55,7 +61,7 @@
 
         > input {
           width: 100%;
-          padding: 0.5rem 0;
+          padding: 0.5rem 0.8rem;
           margin: 0.5rem 0;
           border: none;
           border-bottom: 2px solid black;
@@ -69,7 +75,7 @@
           align-items: center;
           > input {
             width: 100%;
-            padding: 0.5rem 0;
+            padding: 0.5rem 0.8rem;
             margin: 0.5rem 0;
             border: none;
             border-bottom: 2px solid black;
@@ -95,7 +101,7 @@
           background-color: #4267b2;
           border-radius: 5px;
           color: white;
-          transition: all 0.5s ease-in-out;
+          transition: all 0.2s ease-in-out;
           &:hover {
             font-size: 1.1rem;
           }

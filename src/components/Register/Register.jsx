@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import "./Register.scss";
 import { NavLink, Navigate } from "react-router-dom";
-import { toast } from "react-hot-toast";
+import {toast} from "react-toastify"
+
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -66,7 +67,7 @@ function Register() {
           <div className="img">
             <h1>New To Here</h1>
 
-            <p>Register to stay connected us.</p>
+            <p>Register to stay connected with us.</p>
           </div>
           <div className="loginForm">
             <form action="">

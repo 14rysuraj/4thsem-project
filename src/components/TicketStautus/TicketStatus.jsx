@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import "./TicketStatus.css";
 import { context } from "../../main";
 import axios from "axios";
-import toast from "react-hot-toast";
+import {toast} from "react-toastify"
+
 import { NavLink } from "react-router-dom";
 
 function TicketStatus() {

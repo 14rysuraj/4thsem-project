@@ -3,10 +3,14 @@ import "./Header.css";
 import { NavLink } from "react-router-dom";
 import { context } from "../../main";
 import axios from "axios";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
+
+import { useNavigate } from "react-router-dom";
+import { SiChinaeasternairlines } from "react-icons/si";
 
 function Header() {
   const { isAuthenticated, setIsAuthenticated } = useContext(context);
+  const navigate = useNavigate();
 
   const logoutHandler = async () => {
     try {
@@ -15,7 +19,9 @@ function Header() {
       });
 
       toast.success(response.data.message);
+      localStorage.removeItem("token");
       setIsAuthenticated(false);
+      navigate("/book");
     } catch (error) {
       toast.error("error occured");
       setIsAuthenticated(true);
@@ -25,11 +31,13 @@ function Header() {
   return (
     <div className="Hbody">
       <div className="nav-title">
-        <h1 id="Header-title">Airlines System</h1>
+        <h1 id="Header-title">
+          <SiChinaeasternairlines />
+          Fly Easy
+        </h1>
       </div>
 
       <div className="nav-lists">
-  
         <NavLink
           to="/book"
           className={({ isActive }) =>
@@ -92,21 +100,17 @@ function Header() {
         >
           myprofile
         </NavLink>
-        </div>
+      </div>
 
-        {isAuthenticated ? (
-       
-            <button onClick={logoutHandler} className="login-tag  logout">
-              Logout
-            </button>
-           
-        
-        ) : (
-          <div className=" login-tag">
-            <NavLink to="/login">Login/Register</NavLink>
-          </div>
-        )}
-     
+      {isAuthenticated ? (
+        <button onClick={logoutHandler} className="login-tag  logout">
+          Logout
+        </button>
+      ) : (
+        <div className=" login-tag">
+          <NavLink to="/login">Login/Register</NavLink>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,0 +1,19 @@
+.add {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  > .addTicketForm {
+    width: 100%;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  > button {
+    background-color: #4267b2;
+    padding: 10px 20px;
+    margin-right: 10%;
+    margin-top: 40px;
+  }
+}

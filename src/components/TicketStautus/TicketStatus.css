@@ -1,9 +1,12 @@
+
+
 .Tbody {
   display: flex;
   flex-wrap: wrap;
   margin: 20px;
   width: 100%;
   height: 100vh;
+
 }
 
 .ticket {
@@ -46,10 +49,11 @@
 }
 
 .loginToSee {
-  height: 54vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   color: rgb(82, 82, 191);
   font-size: xx-large;
+
 }

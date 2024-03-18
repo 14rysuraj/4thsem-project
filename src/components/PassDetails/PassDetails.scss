@@ -1,0 +1,39 @@
+.passengerDetails{
+    margin-top: 20px;
+
+  
+  
+    >h1{
+        padding: 10px;
+        font-weight:bolder;
+        background-color: yellow;
+        width: 100%;
+    }
+    >.fields{
+        display: flex;
+        margin: 20px 0;
+        justify-content: space-evenly;
+
+        >input{
+            width: 30%;
+            padding: 0px 10px;
+            height: 40px;
+            border-radius: 5px;
+        }
+    }
+    >.last{
+
+        display: flex;
+        margin-bottom: 50px;
+       
+        >select{
+            height: 40px;
+            padding: 0px 10px;
+            width: 30%;
+            border-radius: 5px;
+            margin-left: 2.3%;
+
+        }
+    }
+}
+

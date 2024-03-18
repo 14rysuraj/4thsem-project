@@ -1,13 +1,15 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./Navbar.css";
 import { slide as Menu } from "react-burger-menu";
 import { Link, NavLink } from "react-router-dom";
 import { context } from "../../main";
 import axios from "axios";
-import toast from "react-hot-toast";
+import {toast} from "react-toastify"
+
 
 function Navbar() {
   const { isAuthenticated, setIsAuthenticated } = useContext(context);
+  const [isAdmin, setIsAdmin] = useState(false);
   const logoutHandler = async () => {
     try {
       const response = await axios.get("/api/v1/users/logout", {
@@ -23,32 +25,44 @@ function Navbar() {
   };
 
   return (
-    <Menu>
-      <NavLink to="/book" className="menu-item">
-        Book
-      </NavLink>
-      <NavLink to="/mytickets" className="menu-item">
-        My Ticket
-      </NavLink>
-      <NavLink to="/about" className="menu-item">
-        About
-      </NavLink>
+  
+  <>
 
-      <NavLink to="/contact" className="menu-item">
-        Contact
-      </NavLink>
 
-      {isAuthenticated ? (
-        <button onClick={logoutHandler} className="menu-item logout">
-          Logout
-        </button>
-      ) : (
-        <NavLink to="/login" className="menu-item">
-          Login
-        </NavLink>
-      )}
-    </Menu>
-  );
+{!isAdmin ? (<Menu>
+  <NavLink to="/book" className="menu-item">
+    Book
+  </NavLink>
+  <NavLink to="/mytickets" className="menu-item">
+    My Ticket
+  </NavLink>
+  <NavLink to="/about" className="menu-item">
+    About
+  </NavLink>
+
+  <NavLink to="/contact" className="menu-item">
+    Contact
+  </NavLink>
+
+  {isAuthenticated ? (
+    <button onClick={logoutHandler} className="menu-item logout">
+      Logout
+    </button>
+  ) : (
+    <NavLink to="/login" className="menu-item">
+      Login
+    </NavLink>
+  )}
+</Menu>) : null}
+
+    
+
+
+    
+    
+</>
+      );
+     
 }
 
 export default Navbar;

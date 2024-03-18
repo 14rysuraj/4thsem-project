@@ -15,7 +15,7 @@ function Footer() {
       </div>
       <div className="fdiv1">
 
-        <h2>NS Airlines (P)LTD.</h2>
+        <h2>Fly Easy (P)LTD.</h2>
         <h3>Our Office</h3>
         <p>Nirmal Pandu Gwarkhu </p>
         <p>Gwarkhu-4 ,Kathmandu</p>

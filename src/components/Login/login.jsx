@@ -4,11 +4,14 @@ import Register from "../Register/Register";
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import toast from "react-hot-toast";
-import { context } from "../../main";
+import {toast} from "react-toastify"
+
+import { adminContext, context } from "../../main";
 import { Navigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { BiHide, BiShow } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function Login() {
   const [cookies, setCookies] = useCookies("token");
@@ -16,6 +19,10 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const { isAdminAuthenticated, setIsAdminAuthenticated } =
+    useContext(adminContext); //
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleShowPassword = (e) => {
     e.preventDefault();
@@ -26,7 +33,7 @@ function Login() {
   const handleLogin = async (e) => {
     try {
       e.preventDefault();
-     if (!email) return toast.error("Please enter your email address!");
+      if (!email) return toast.error("Please enter your email address!");
       if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email))
         return toast.error("Invalid Email Address!");
       if (!password) return toast.error("Please enter your password!");
@@ -46,9 +53,11 @@ function Login() {
       );
 
       if (response.data.success) {
-        toast.success(response.data.message);
+        toast.success("Logged in successfully");
         setCookies("token", response.data.token);
         setIsAuthenticated(true);
+        localStorage.setItem("token", response.data.token);
+        navigate("/book");
       } else {
         toast.error(response.data.message);
         setIsAuthenticated(false);
@@ -58,8 +67,6 @@ function Login() {
     }
   };
 
-  if (isAuthenticated) return <Navigate to={"/"} />;
-
   return (
     <>
       <div className="loginBody">
@@ -68,6 +75,14 @@ function Login() {
             <h2>Welcome Back</h2>
             <br />
             <p>Sign in to your account.</p>
+            <br />
+            <p>
+              {!isAdminAuthenticated ? (
+                <NavLink to="/adminlogin">Login as admin</NavLink>
+              ) : (
+                <NavLink to="/admin/dashboard">Dashboard</NavLink>
+              )}
+            </p>
           </div>
           <div className="loginForm">
             <form action="">

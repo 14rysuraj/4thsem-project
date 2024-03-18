@@ -1,0 +1,29 @@
+.dashboardBody{
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.card{
+    height: 100px;
+    width: 380px;
+    margin: 20px 30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 5px 2px 6px 1px rgba(0, 0, 0, 0.5);
+
+    >svg{
+        font-size: 4rem;
+    }
+    >div{
+        
+        >h2{
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+    }
+
+}

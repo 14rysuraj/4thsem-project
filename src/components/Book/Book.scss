@@ -2,175 +2,219 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 100px;
 
   > .imgContainer {
-    height: 52rem;
+    height: 600px;
     width: 100%;
-    background-image: url(src/assets/bookbg1.png);
+    background-image: url(src/assets/peakpx.jpg);
     background-position: center;
     background-size: cover;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    margin-bottom: 4rem;
+    margin-bottom: 15px;
+    @media only screen and (max-width: 600px) {
+      align-items: center;
+    }
+  }
 
-    > .bookingContainer {
-      height: 250px;
-      width: 80%;
-      margin-bottom: 4rem;
-      position: relative;
-      border-radius: 1rem;
-      box-shadow: 0px 0px 5px 1px rgb(143, 136, 136);
+  > .bookingContainer {
+ 
+    width: 80%;
+    margin-bottom: 9rem;
+    position: relative;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 5px 1px rgb(143, 136, 136);
 
-      > .flight {
-        background-color: aliceblue;
-        height: 4rem;
-        width: 14%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-weight: 600;
-        border-top-left-radius: 1rem;
-        border-top-right-radius: 1rem;
-
-        > svg {
-          position: absolute;
-          left: 30px;
-          font-size: large;
-        }
+    > .flight {
+      background-color: rgb(100, 163, 218);
+      height: 4rem;
+      width: 14%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+      font-size: x-large;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+      @media only screen and (max-width: 800px) {
+        width: 100%;
       }
 
-      > form {
-        background-color: white;
-        border-bottom-right-radius: 1rem;
-        border-bottom-left-radius: 1rem;
-        border-top-right-radius: 1rem;
-
-        > .options {
-          margin: 0 2rem;
-          border: none;
-          display: flex;
-
-          > select {
-            padding: 1rem 2rem;
-            font-size: small;
-            font-weight: 700;
-          }
-          > .passenger {
-            display: flex;
-            align-items: center;
-            padding: 1rem 2rem;
-            font-size: small;
-            font-weight: 700;
-            >button{
-              > svg {
-                margin-left: 1.4rem;
-                font-size: larger;
-              }
-            }
-            
-          }
-        }
-
-        > .otherOptions {
-          height: 100%;
-          display: flex;
-          justify-content: space-evenly;
-          height: 8.3rem;
-          border-bottom-left-radius: 1rem;
-          border-bottom-right-radius: 1rem;
-          align-items: center;
-
-          > .source {
-            width: 25%;
-            padding: 1rem 2rem;
-            font-size: small;
-            height: 6rem;
-            border: 0.3px solid rgb(155, 151, 145);
-            border-radius: 1rem;
-
-            > h2 {
-              font-weight: 700;
-            }
-
-            > select {
-              height: 80%;
-              width: 100%;
-              border: none;
-            }
-          }
-
-          > button {
-            > svg {
-              font-size: x-large;
-            }
-          }
-          > .destination {
-            width: 25%;
-            padding: 1rem 2rem;
-            font-size: small;
-            height: 6rem;
-            border: 0.3px solid rgb(155, 151, 145);
-            border-radius: 1rem;
-
-            > h2 {
-              font-weight: 700;
-            }
-            > select {
-              height: 80%;
-              width: 100%;
-              border: none;
-            }
-          }
-          > .dates {
-            width: 30%;
-            padding: 1rem 2rem;
-            font-size: small;
-            height: 6rem;
-            margin-left: 5rem;
-            display: flex;
-            justify-content: space-around;
-            border: 0.3px solid rgb(155, 151, 145);
-            border-radius: 1rem;
-
-            > .departure {
-              width: 45%;
-              > h2 {
-                font-weight: 700;
-              }
-              > input {
-                height: 80%;
-                width: 100%;
-                border: none;
-              }
-            }
-            > .return {
-              width: 45%;
-              > h2 {
-                font-weight: 700;
-              }
-              > input {
-                height: 80%;
-                width: 100%;
-                border: none;
-              }
-            }
-          }
+      > svg {
+        position: absolute;
+        left: 30px;
+        font-size: large;
+        @media only screen and (max-width: 1300px) {
+          display: none;
         }
       }
     }
-    > button {
-      background-color: black;
-      color: white;
-      padding: 1rem 2rem;
-      position: absolute;
-      bottom: 6rem;
-      right: 10.4rem;
-      border-radius: 0.5rem;
-      display: flex;
-      align-items: center;
-      > svg {
-        margin-left: 1rem;
+
+    > form {
+      background-color: white;
+      border-bottom-right-radius: 1rem;
+      border-bottom-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+      @media only screen and (max-width: 600px) {
+        border-top-right-radius: 0rem;
+      }
+
+      > .options {
+        margin: 0 2rem;
+        border: none;
+        display: flex;
+
+        @media only screen and (max-width: 600px) {
+          flex-direction: column;
+        }
+
+        > select {
+          padding: 1rem 2rem;
+          font-size: large;
+          font-weight: 700;
+          cursor: pointer;
+        }
+        > .passenger {
+          display: flex;
+          align-items: center;
+          padding: 1rem 2rem;
+          font-size: large;
+          font-weight: 700;
+          > button {
+            > svg {
+              margin-left: 1.4rem;
+              font-size: larger;
+            }
+          }
+        }
+      }
+
+      > .otherOptions {
+      
+        display: flex;
+        justify-content: space-evenly;
+      
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        align-items: center;
+        @media only screen and (max-width: 600px) {
+          flex-direction: column;
+
+          margin-top: 5rem;
+          align-items: center;
+        }
+
+        > .source {
+          width: 25%;
+          padding: 1rem 2rem;
+          font-size: large;
+          height: 6rem;
+          border: 0.3px solid rgb(155, 151, 145);
+          border-radius: 1rem;
+          @media only screen and (max-width: 600px) {
+            min-width: 80%;
+          }
+
+          > h2 {
+            font-weight: 700;
+          }
+
+          > select {
+            height: 80%;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+          }
+        }
+
+        > button {
+          > svg {
+            font-size: x-large;
+          }
+        }
+        > .destination {
+          width: 25%;
+          padding: 1rem 2rem;
+          font-size: large;
+          height: 6rem;
+          border: 0.3px solid rgb(155, 151, 145);
+          border-radius: 1rem;
+          @media only screen and (max-width: 600px) {
+            min-width: 80%;
+          }
+
+          > h2 {
+            font-weight: 700;
+          }
+          > select {
+            height: 80%;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+          }
+        }
+        > .dates {
+          width: 30%;
+          padding: 1rem 2rem;
+          font-size: large;
+          margin-left: 5rem;
+          display: flex;
+          justify-content: space-around;
+          border: 0.3px solid rgb(155, 151, 145);
+          border-radius: 1rem;
+          @media only screen and (max-width: 600px) {
+            min-width: 80%;
+            margin-top: 2rem;
+            margin-right: 5rem;
+          }
+
+          > .departure {
+            width: 45%;
+            > h2 {
+              font-weight: 700;
+            }
+            > input {
+              height: 80%;
+              width: 100%;
+              border: none;
+            }
+          }
+          > .return {
+            width: 45%;
+            > h2 {
+              font-weight: 700;
+            }
+            > input {
+              height: 80%;
+              width: 100%;
+              border: none;
+            }
+          }
+        }
+      }
+
+      > .search {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        > button {
+          background-color: black;
+          color: white;
+          padding: 1rem 2rem;
+          position: absolute;
+
+          border-radius: 0.5rem;
+          display: flex;
+          align-items: center;
+          @media only screen and (max-width: 600px) {
+          }
+          > svg {
+            margin-left: 1rem;
+          }
+        }
       }
     }
   }
@@ -188,15 +232,23 @@
     width: 80%;
     display: flex;
     justify-content: space-evenly;
+    @media only screen and (max-width: 600px) {
+      margin-bottom: 800px;
+    }
 
     > .one {
       height: 100%;
       width: 40%;
-
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
+
+      @media only screen and (max-width: 600px) {
+        align-items: center;
+        height: 50%;
+        width: 100%;
+      }
       > p {
         font-family: "Times New Roman", Times, serif;
         font-size: 1.5rem;
@@ -210,11 +262,20 @@
         font-size: x-large;
         font-weight: 500;
         padding: 3rem 0;
+        @media only screen and (max-width: 600px) {
+          text-align: center;
+        }
       }
     }
     > .two {
       width: 50%;
       display: flex;
+      @media only screen and (max-width: 600px) {
+        position: absolute;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 600px;
+      }
 
       > .imgoneandtwo {
         height: 400px;
@@ -253,71 +314,99 @@
       }
     }
   }
-  > .h2 {
-    margin-top: 10rem;
+  > .title {
+    margin-top: 300px;
+
+    > h2 {
+      color: blue;
+      font-size: x-large;
+      padding: 0 18px;
+    }
+
+    > .choose {
+      width: 100%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      > .title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      > .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+    }
   }
 }
 
-
-.dropdown{
+.dropdown {
   color: white;
   height: 100px;
-  position:absolute;
-  background-color: red;
+  position: absolute;
   z-index: 1;
   top: 7rem;
   width: 250px;
- border-radius: 5px;
- box-shadow: 0px 0px 5px 1px rgb(143, 136, 136);
- >h3{
-  background-color: rgb(186, 186, 185);
-  height: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.3rem 1rem;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 1px rgb(143, 136, 136);
+  > h3 {
+    background-color: black;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.3rem 1rem;
+    font-size: small;
 
-  >button{
-    >svg{
-      margin-left: 1rem;
-      font-size: larger;
+    > button {
+      > svg {
+        margin-left: 1rem;
+        font-size: larger;
+      }
     }
   }
- }
- >.adult{
-  height: 50%;
-  background-color: white;
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  >p{
-    font-size: larger;
-    font-weight: 500;
-    padding: 1rem;
+  > .adult {
+    height: 50%;
+    background-color: white;
+    color: black;
+    display: flex;
+    font-size: small;
+    align-items: center;
+    justify-content: space-evenly;
+    > p {
+      font-size: larger;
+      font-weight: 500;
+      padding: 1rem;
+    }
+    > button {
+      border: 1px solid black;
+      padding: 0.2rem 1rem;
+    }
   }
-  >button{
-    border: 1px solid black;
-    padding: 0.2rem 1rem ;
-  }
+  > .child {
+    height: 50%;
+    background-color: white;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: small;
 
- }
- >.child{
-  height: 50%;
-  background-color: white;
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-
-  >p{
-    font-size: larger;
-    font-weight: 500;
-    padding: 1rem;
+    > p {
+      font-size: larger;
+      font-weight: 500;
+      padding: 1rem;
+    }
+    > button {
+      border: 1px solid black;
+      padding: 0.2rem 1rem;
+    }
   }
-  >button{
-    border: 1px solid black;
-    padding: 0.2rem 1rem ;
-  }
-}
 }
