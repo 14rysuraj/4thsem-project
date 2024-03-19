@@ -2,13 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import "./TicketStatus.css";
 import { context } from "../../main";
 import axios from "axios";
-import {toast} from "react-toastify"
+import { toast } from "react-toastify";
 
 import { NavLink } from "react-router-dom";
 
 function TicketStatus() {
-  const { isAuthenticated, setIsAuthenticated, round, setRound } =
-    useContext(context);
+  const { isAuthenticated, setIsAuthenticated } = useContext(context);
   const [tickets, setTickets] = useState([]);
 
   useEffect(() => {
@@ -34,39 +33,57 @@ function TicketStatus() {
 
       setTimeout(() => {
         window.location.reload();
-      }, 2500);
+      }, 4000);
     }
   };
 
+  console.log(tickets);
+
   return (
     <>
-     {isAuthenticated?(<main className="Tbody">
-        {tickets.map((ticket, index) => (
-          <div key={ticket._id} className="ticket">
-            <h2>Ticket ID: {ticket._id}</h2>
-            
+      {isAuthenticated ? (
+        <main className="Tbody">
+          {tickets.map((ticket, index) => (
+            <div key={ticket._id} className="ticket">
+              <h2>Flight Number: {ticket.flightNumber}</h2>
 
-            <div className="fromAndTotext">
-              <p className="fromCitytext">From: {ticket.fromCity}</p>
+              <div className="fromAndTotext">
+                <p className="fromCitytext">From: {ticket.fromCity}</p>
+              </div>
               <p>To: {ticket.toCity}</p>
-            </div>
-            <p>Daparts: {ticket.date}</p>
-            <p className="tripTypetext">TripType: {ticket.tripType}</p>
-            <p className="passengertext">Passenger: {ticket.passenger}</p>
-            <div className="cancelBtn">
-              <button onClick={(e) => handleCancel(e, index)}>
-                Cancel Ticket
-              </button>
-            </div>
+              <br />
+              <p>Flight Date: {ticket.date}</p>
+              <p className="tripTypetext">TripType: {ticket.tripType}</p>
+              <p className="passengertext">
+                Passenger: {ticket.totalPassenger}
+              </p>
+              <p className="passengertext">
+                Passenger Name :{" "}
+                {ticket.passengerDetails.map((passenger) => (
+                  <span key={passenger._id}>
+                    {passenger.firstName} {passenger.lastName} (
+                    {passenger.nationality}) ,
+                  </span>
+                ))}
+              </p>
+              <p className="tripTypetext">Amount: {ticket.amount}</p>
+              <p className="tripTypetext">Return Date: {ticket.returnDate}</p>
 
-            <p className="amounttext">Amount:{ticket.amount}</p>
-            {/* Add more ticket information as needed */}
-          </div>
-        ))}
-      </main>) : <div className="loginToSee">
+              <div className="cancelBtn">
+                <button onClick={(e) => handleCancel(e, index)}>
+                  Cancel Ticket
+                </button>
+              </div>
+
+              {/* Add more ticket information as needed */}
+            </div>
+          ))}
+        </main>
+      ) : (
+        <div className="loginToSee">
           <NavLink to={"/login"}>Please Login To See Your Bookings</NavLink>
-      </div>}
-      
+        </div>
+      )}
     </>
   );
 }

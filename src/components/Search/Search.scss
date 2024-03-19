@@ -113,6 +113,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 1;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  .bookNow.show {
+    opacity: 1;
+    transform: translateX(0);
+  }
 
   > .container {
     width: 100%;
@@ -120,6 +127,7 @@
     box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5);
     padding: 10px;
     margin: 150px 0;
+
     > button {
       width: 100%;
       display: flex;
@@ -142,7 +150,6 @@
 
       > button {
         background-color: green;
-        width: 100px;
         padding: 10px;
       }
     }

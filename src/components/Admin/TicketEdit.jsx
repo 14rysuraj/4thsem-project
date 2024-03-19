@@ -11,7 +11,7 @@ const TicketEdit = () => {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [time, setTime] = useState("");
-  const [seat, setSeat] = useState("");
+  const [flightNumber, setflightNumber] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const TicketEdit = () => {
       setFrom(response.data.ticket.from);
       setTo(response.data.ticket.to);
       setTime(response.data.ticket.time);
-      setSeat(response.data.ticket.seat);
+      setflightNumber(response.data.ticket.flightNumber);
     };
 
     fetchData();
@@ -34,7 +34,7 @@ const TicketEdit = () => {
       from: from,
       to: to,
       time: time,
-      seat: seat,
+      flightNumber: flightNumber,
     });
 
     if (response) {
@@ -64,8 +64,8 @@ const TicketEdit = () => {
           />
           <input
             type="text"
-            value={seat}
-            onChange={(e) => setSeat(e.target.value)}
+            value={flightNumber}
+            onChange={(e) => setflightNumber(e.target.value)}
           />
           <button onClick={handleSave}>Save</button>
         </form>

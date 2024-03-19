@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./Admin.scss";
 import { HiBars3BottomLeft } from "react-icons/hi2";
 import { IoIosArrowDown } from "react-icons/io";
@@ -11,18 +11,32 @@ import { IoIosLogOut } from "react-icons/io";
 import { useCookies } from "react-cookie";
 import { adminContext } from "../../main";
 import axios from "axios";
-import {toast} from "react-toastify"
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 function Admin() {
   const [cookies, setCookies] = useCookies("admintoken");
   const [show, setShow] = useState(false);
-  const { setIsAdminAuthenticated, isAdminAuthenticated } = useContext(adminContext);
+  const { setIsAdminAuthenticated, isAdminAuthenticated } =
+    useContext(adminContext);
   const navigate = useNavigate();
+  const [data, setData] = useState();
 
   const handleShowSideBar = (e) => {
     e.preventDefault();
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get("/api/v1/admin/profile");
+
+      setData(response.data);
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(data);
 
   const showDropDown = (e) => {
     e.preventDefault();
@@ -30,9 +44,7 @@ function Admin() {
     console.log(show);
   };
 
-
   const handleLogout = async (e) => {
-
     try {
       const response = await axios.get("/api/v1/admin/logout", {
         withCredentials: true,
@@ -42,16 +54,16 @@ function Admin() {
       localStorage.removeItem("admintoken");
       setIsAdminAuthenticated(false);
       navigate("/login");
-      
     } catch (error) {
       toast.error("error occured");
       setIsAdminAuthenticated(true);
     }
   };
-    
-  
 
   return (
+
+
+
     <div className="admin">
       <header>
         <div className="one">
@@ -61,7 +73,7 @@ function Admin() {
         </div>
         <div className="two" onClick={showDropDown}>
           <div className="img"></div>
-          <p>suraj Chaudhary</p>
+          <p> {data ? data.admin.email : "suraj chaudhary"}</p>
           <button>
             <IoIosArrowDown />
           </button>
@@ -98,7 +110,11 @@ function Admin() {
             </NavLink>
             <NavLink to="/admin/managetickets">
               <HiTicket />
-              Manage Tickets
+              Manage Flights
+            </NavLink>
+            <NavLink to="/admin/showbookedtickets">
+              <HiTicket />
+              Booked tickets
             </NavLink>
           </div>
         </aside>

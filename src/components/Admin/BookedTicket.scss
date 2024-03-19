@@ -1,0 +1,21 @@
+.bookedTicketBody {
+  > h2 {
+    font-size: x-large;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  > .container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: 25px 9px;
+    flex: wrap;
+
+    > p {
+      font-size: small;
+      min-width: 90px;
+      overflow-x: scroll;
+    }
+  }
+}

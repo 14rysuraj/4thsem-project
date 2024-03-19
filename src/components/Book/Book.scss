@@ -20,7 +20,8 @@
   }
 
   > .bookingContainer {
- 
+    position: sticky;
+    top: 0;
     width: 80%;
     margin-bottom: 9rem;
     position: relative;
@@ -92,10 +93,9 @@
       }
 
       > .otherOptions {
-      
         display: flex;
         justify-content: space-evenly;
-      
+
         border-bottom-left-radius: 1rem;
         border-bottom-right-radius: 1rem;
         align-items: center;

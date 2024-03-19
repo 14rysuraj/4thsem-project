@@ -9,19 +9,19 @@ const EditTicket = () => {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [time, setTime] = useState("");
-  const [seat, setSeat] = useState("");
+  const [flightNumber, setflightNumber] = useState("air88");
   const navigate = useNavigate();
   const handleAddTicket = (e) => {
     e.preventDefault();
-      console.log(from, to, time, seat);
+      console.log(from, to, time, flightNumber);
      
-      if(!from && !to && !time && !seat) return toast.error("Field is required")
+      if(!from && !to && !time && !flightNumber) return toast.error("Field is required")
 
     const response = axios.post("/api/v1/ticket/addTicket", {
       from: from,
       to: to,
       time: time,
-      seat: seat,
+      flightNumber: flightNumber,
     });
 
     if (response) {
@@ -30,7 +30,7 @@ const EditTicket = () => {
       setFrom("");
       setTo("");
       setTime("");
-      setSeat("");
+      setflightNumber("");
     }
   };
 
@@ -57,9 +57,9 @@ const EditTicket = () => {
         />
         <input
           type="text"
-          placeholder="Seat Number"
-          value={seat}
-          onChange={(e) => setSeat(e.target.value)}
+          placeholder="flightNumber Number"
+          value={flightNumber}
+          onChange={(e) => setflightNumber(e.target.value)}
         />
         <button onClick={handleAddTicket}>Save</button>
       </form>

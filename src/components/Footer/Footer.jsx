@@ -39,7 +39,7 @@ function Footer() {
           <h3>Follow Us : twitter@gmail.com</h3>
         </div>
         <div className="div2">
-          <p>Copyright &#169; 2024 SN Airlines.All Rights Reserved. </p>
+          <p>Copyright &#169; 2024 FLY EASY.All Rights Reserved. </p>
         </div>
       </div>
       </>

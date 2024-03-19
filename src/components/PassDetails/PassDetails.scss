@@ -1,39 +1,44 @@
-.passengerDetails{
-    margin-top: 20px;
+.passengerDetails {
+  margin-top: 20px;
 
-  
-  
-    >h1{
-        padding: 10px;
-        font-weight:bolder;
-        background-color: yellow;
-        width: 100%;
+  > h1 {
+    padding: 10px;
+    font-weight: bolder;
+    width: 100%;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(9, 9, 121, 1) 0%,
+      rgba(7, 58, 153, 1) 37%,
+      rgba(6, 80, 167, 1) 71%,
+      rgba(5, 107, 185, 1) 100%,
+      rgba(0, 212, 255, 1) 100%
+    );
+    color: white;
+  }
+  > .fields {
+    display: flex;
+    margin: 20px 0;
+    justify-content: space-evenly;
+
+    > input {
+      width: 30%;
+      padding: 0px 10px;
+      height: 40px;
+      border-radius: 5px;
     }
-    >.fields{
-        display: flex;
-        margin: 20px 0;
-        justify-content: space-evenly;
+  }
+  > .last {
+    display: flex;
+    margin-bottom: 50px;
 
-        >input{
-            width: 30%;
-            padding: 0px 10px;
-            height: 40px;
-            border-radius: 5px;
-        }
+    > select {
+      height: 40px;
+      padding: 0px 10px;
+      width: 30%;
+      border-radius: 5px;
+      margin-left: 2.3%;
     }
-    >.last{
-
-        display: flex;
-        margin-bottom: 50px;
-       
-        >select{
-            height: 40px;
-            padding: 0px 10px;
-            width: 30%;
-            border-radius: 5px;
-            margin-left: 2.3%;
-
-        }
-    }
+  }
 }
-

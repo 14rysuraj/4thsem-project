@@ -26,9 +26,10 @@ import { useCookies } from "react-cookie";
 import ScrollToTop from "./components/ScrollToTop";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BookedTicket from "./components/Admin/BookedTicket";
 
 function App() {
-  const { setIsAuthenticated } = useContext(context);
+  const { isAuthenticated, setIsAuthenticated } = useContext(context);
   const [cookies, setCookies] = useCookies(["token", "admintoken"]);
   const { isAdminAuthenticated, setIsAdminAuthenticated } =
     useContext(adminContext);
@@ -38,6 +39,12 @@ function App() {
     setIsAdminAuthenticated(true);
   } else {
     setIsAdminAuthenticated(false);
+  }
+  const user = localStorage.getItem("token");
+  if (user) {
+    setIsAuthenticated(true);
+  } else {
+    setIsAuthenticated(false);
   }
 
   return (
@@ -72,8 +79,10 @@ function App() {
             <Route path="/admin/ticketedit/:id" Component={TicketEdit} />
             <Route path="/admin/managetickets" Component={ManageTicket}>
               <Route path="/admin/managetickets/edit" Component={EditTicket} />
+             
             </Route>
-          </Route>
+            <Route path="/admin/showbookedtickets" Component={BookedTicket} />
+            </Route>
         </Routes>
 
         <ToastContainer

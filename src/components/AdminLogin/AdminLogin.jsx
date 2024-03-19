@@ -1,12 +1,10 @@
 import React, { useContext, useState } from "react";
 import "./AdminLogin.scss";
-import {toast} from "react-toastify"
-
+import { toast } from "react-toastify";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { adminContext } from "../../main";
-
 const AdminLogin = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -21,7 +19,8 @@ const AdminLogin = () => {
 
       if (!email) return toast.error("Please enter your email address!");
       if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email))
-        if (!password) return toast.error("Please enter your password!");
+      return toast.error("Invalid Email Address!");
+      if (!password) return toast.error("Please enter your password!");
 
       const response = await axios.post(
         "/api/v1/admin/login",
@@ -38,10 +37,10 @@ const AdminLogin = () => {
       );
 
       if (response.data.success) {
-        toast.success("Logged In Successfully");
+        toast.success(response.data.message);
         localStorage.setItem("admintoken", response.data.admintoken);
-
         setIsAdminAuthenticated(true);
+        navigate("/admin/dashboard");
       } else {
         toast.error(response.data.message);
         setIsAdminAuthenticated(false);
@@ -50,8 +49,6 @@ const AdminLogin = () => {
       console.error(error);
     }
   };
-
-  if (isAdminAuthenticated) return navigate("/admin/dashboard");
 
   return (
     <div className="adminLoginBody">

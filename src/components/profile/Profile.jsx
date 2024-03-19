@@ -18,21 +18,24 @@ function Profile() {
     fetchData();
   }, []);
 
+  console.log(data);
+
   return (
     <div className="profileBody">
       {isAuthenticated ? (
         <div className="profileContainer">
           <div className="userProfile"></div>
 
-          <p>Name: {data.user ? data.user.name : "Loading..."} </p>
-          <p>Phone number : {data.user ? data.user.phoneNumber : ""}</p>
-          <p>Address : {data.user ? data.user.address : ""}</p>
-          <p>Email: {data.user ? data.user.email : "Loading..."} </p>
-
-          <div className="profileBtn">
-            <NavLink className="editbtn" to={"/edit"}>
-              Edit Profile
-            </NavLink>
+          <div className="infoContainer">
+            <p>Name: {data.user ? data.user.name : "Loading..."} </p>
+            <p>Phone number : {data.user ? data.user.phoneNumber : ""}</p>
+            <p>Address : {data.user ? data.user.address : ""}</p>
+            <p>Email: {data.user ? data.user.email : "Loading..."} </p>
+            <div className="profileBtn">
+              <NavLink className="editbtn" to={"/edit"}>
+                Edit Profile
+              </NavLink>
+            </div>
           </div>
         </div>
       ) : (

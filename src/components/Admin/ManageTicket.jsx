@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./ManageTicket.scss";
 import axios from "axios";
 import { Link, Outlet } from "react-router-dom";
-import {toast} from "react-toastify"
-
+import { toast } from "react-toastify";
 
 const ManageTicket = () => {
   const [tickets, setTickets] = useState([]);
@@ -26,11 +25,9 @@ const ManageTicket = () => {
     if (response) {
       toast.success("Ticket deleted successfully");
 
-
       setTimeout(() => {
         window.location.reload();
       }, 2500);
-     
     }
   };
 
@@ -40,7 +37,7 @@ const ManageTicket = () => {
         <div>From</div>
         <div>To</div>
         <div>Time</div>
-        <div>Seat</div>
+        <div>Flight Number</div>
         <div>Edit</div>
       </header>
 
@@ -49,9 +46,13 @@ const ManageTicket = () => {
           <h3>{ticket.from}</h3>
           <h3>{ticket.to}</h3>
           <h3>{ticket.time}</h3>
-          <h3>{ticket.seat}</h3>
+          <h3>{ticket.flightNumber}</h3>
           <h3>
-        <button>  <Link to={`/admin/ticketedit/${ticket._id}`}>Edit</Link></button> |{" "}
+            <button>
+              {" "}
+              <Link to={`/admin/ticketedit/${ticket._id}`}>Edit</Link>
+            </button>{" "}
+            |{" "}
             <button onClick={(e) => handleDeleteTicket(e, index)}>
               Delete
             </button>
@@ -64,7 +65,7 @@ const ManageTicket = () => {
           <Outlet />
         </div>
         {window.location.href ===
-        "http://localhost:5173/admin/managetickets" ? (
+        "http://localhost:5175/admin/managetickets" ? (
           <button>
             {" "}
             <Link to="/admin/managetickets/edit">Add Ticket</Link>

@@ -42,7 +42,7 @@ function Book() {
     if (!from || !to) return toast.error("please select a location");
     if (!date) return toast.error("Please select a date");
     if (!nationality) return toast.error("Please enter your nationality");
-
+    if(from===to) return toast.error("Please select a different location");
     if (!returnDate && tripType === "RoundTrip")
       return toast.error("Please enter a return date");
 
@@ -265,8 +265,16 @@ function Book() {
                 h="Happy Passengers"
                 p="Our passengers are very happy with our service."
               />
-              <Service img={<FaMoneyCheckAlt />} h="Competitive Fare" p="Our fare is competitive as compared to other airlines" />
-              <Service img={<GrStatusGood />} h="Experience" p="We have been providing excellence service over 60 years"/>
+              <Service
+                img={<FaMoneyCheckAlt />}
+                h="Competitive Fare"
+                p="Our fare is competitive as compared to other airlines"
+              />
+              <Service
+                img={<GrStatusGood />}
+                h="Experience"
+                p="We have been providing excellence service ."
+              />
             </div>
           </div>
         </div>

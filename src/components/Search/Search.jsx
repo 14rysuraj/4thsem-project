@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import "./Search.scss";
 
 import { MdAirlineSeatReclineExtra } from "react-icons/md";
@@ -8,7 +8,8 @@ import { RxCross2 } from "react-icons/rx";
 import { context } from "../../main";
 import axios from "axios";
 import PassDetails from "../PassDetails/PassDetails";
-
+import { toast } from "react-toastify";
+import { FaPlane } from "react-icons/fa";
 const Search = () => {
   const location = useLocation();
   const formData = location.state;
@@ -16,10 +17,14 @@ const Search = () => {
   const navigate = useNavigate();
   const [searchData, setSearchData] = useState([]);
   const [show, setshow] = useState(false);
-  const [passengerDetails, setPassengerDetails] = useState([]);
+  const [passengerDetails, setPassengerDetails] = useState(
+    Array(formData.totalPassenger).fill({})
+   );
+   
   const [ticket, setticket] = useState("");
+  const bookNowRef = useRef(null);
+  const [amount, setamount] = useState();
 
-  console.log(formData.totalPassenger);
   console.log(passengerDetails);
 
   useEffect(() => {
@@ -31,7 +36,10 @@ const Search = () => {
     fetchData();
   }, []);
 
-  console.log(searchData);
+  useEffect(() => {
+    const passenger = formData.totalPassenger;
+    setamount(passenger * 4000);
+  }, [amount]);
 
   const handlePayment = (e, idx) => {
     e.preventDefault();
@@ -41,31 +49,86 @@ const Search = () => {
 
     setshow((prev) => !prev);
 
-    setticket(searchData[idx]._id);
+    setticket(searchData[idx].flightNumber);
   };
 
   const handlePassengerChange = (index, field, value) => {
+    console.log(`Updating passenger ${index + 1}, field: ${field}, value: ${value}`);
     const newPassengerDetails = [...passengerDetails];
-    newPassengerDetails[index] = {
-      ...newPassengerDetails[index],
-      [field]: value,
-    };
+    if (!newPassengerDetails[index]) {
+       newPassengerDetails[index] = {};
+    }
+    newPassengerDetails[index][field] = value;
     setPassengerDetails(newPassengerDetails);
-  };
+   };
+   
 
   const filterSearch = searchData.filter(
     (Result) => Result.from == formData.from && Result.to == formData.to
   );
 
-  const handleBook = () => {
-    console.log(formData.from);
-    console.log(formData.to);
-    console.log(formData.totalPassenger);
-    console.log(formData.returnDate);
-    console.log(formData.adult);
-    console.log(formData.child);
-    console.log(passengerDetails);
-    console.log(ticket);
+
+  const handleBook = async (e) => {
+    e.preventDefault();
+
+    console.log("Passenger Details Before Check:", passengerDetails);
+
+    const hasEmptyField = passengerDetails.some(
+      (passenger) => !passenger.firstName || !passenger.lastName || !passenger.nationality
+     );
+     
+     console.log("Has Empty Field:", hasEmptyField);
+     
+  
+    if (hasEmptyField) {
+      toast.error("Fields are missing");
+      return;
+   }
+  
+
+   
+
+    const fromCity = formData.from;
+    const toCity = formData.to;
+    const date = formData.date;
+    const totalPassenger = formData.totalPassenger;
+    const adult = formData.adult;
+    const child = formData.child;
+    const tripType = formData.tripType;
+    const returnDate = formData.returnDate;
+    const passengerDetailsData = passengerDetails;
+    const flightNumber = ticket;
+
+    const response = await axios.post(
+      "/api/v1/ticket/new",
+      {
+        fromCity,
+        toCity,
+        date,
+        totalPassenger,
+        adult,
+        child,
+        tripType,
+        amount,
+        returnDate,
+        passengerDetails: passengerDetailsData,
+        flightNumber,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+
+    if (response.data.success) {
+      toast.success(response.data.message);
+      navigate("/book");
+      
+    } else {
+      toast.error("something went wrong");
+    }
   };
 
   return (
@@ -103,8 +166,9 @@ const Search = () => {
             <div key={idx} className="searchContainer">
               <div className="one">
                 <div className="seat">
-                  <MdAirlineSeatReclineExtra />
-                  <span>{item.seat}</span>
+                  <FaPlane />
+
+                  <span>{item.flightNumber}</span>
                 </div>
                 <div className="middle">
                   <h3>{item.from}</h3>
@@ -117,14 +181,14 @@ const Search = () => {
                 </div>
               </div>
               <div className="two">
-                <h3>NRS : 9000</h3>
+                <h3>NRS : {amount}</h3>
                 <button onClick={(e) => handlePayment(e, idx)}>Continue</button>
               </div>
             </div>
           ))}
         </div>
       ) : (
-        <div className="bookNow">
+        <div ref={bookNowRef} className={`bookNow ${show ? "show" : ""}`}>
           <div className="container">
             <button onClick={() => setshow(false)}>
               <RxCross2 />
@@ -133,17 +197,17 @@ const Search = () => {
             <h1>Passenger Details</h1>
 
             {Array.from({ length: formData.totalPassenger }).map((_, index) => (
-              <PassDetails
-                key={index}
-                num={index + 1}
-                onChange={(field, value) =>
-                  handlePassengerChange(index, field, value)
-                }
-              />
-            ))}
+ <PassDetails
+    key={index}
+    num={index + 1}
+    onChange={(field, value) => handlePassengerChange(index, field, value)}
+ />
+))}
+
+
 
             <div className="btn">
-              <button>NRS :9000 </button>
+              <button>NRS : {amount} </button>
               <button onClick={handleBook}>Book Now</button>
             </div>
           </div>
